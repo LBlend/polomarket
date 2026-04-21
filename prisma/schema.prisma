@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  rimcoins      Float     @default(0)
+  charityId     String?
+  charity       Charity?  @relation(fields: [charityId], references: [id])
+  isAdmin       Boolean   @default(false)
+  accounts      Account[]
+  sessions      Session[]
+  bets          Bet[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// GPS track point sent by OwnTracks
+model Location {
+  id        String   @id @default(cuid())
+  lat       Float
+  lng       Float
+  altitude  Float?
+  speed     Float?
+  accuracy  Float?
+  battery   Int?
+  tid       String?
+  timestamp DateTime
+  createdAt DateTime @default(now())
+}
+
+// Planned future stops on the route
+model Waypoint {
+  id          String   @id @default(cuid())
+  lat         Float
+  lng         Float
+  name        String
+  description String?
+  order       Int      @default(0)
+  visited     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Charity {
+  id   String  @id @default(cuid())
+  name String
+  slug String  @unique
+  url  String?
+  users User[]
+  bets  Bet[]
+}
+
+model BettingEvent {
+  id          String          @id @default(cuid())
+  title       String
+  description String?
+  status      String          @default("OPEN")
+  resolvedAt  DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  options     BettingOption[]
+  bets        Bet[]
+}
+
+model BettingOption {
+  id       String       @id @default(cuid())
+  eventId  String
+  label    String
+  odds     Float
+  isWinner Boolean      @default(false)
+  event    BettingEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  bets     Bet[]
+}
+
+model Bet {
+  id        String        @id @default(cuid())
+  userId    String
+  eventId   String
+  optionId  String
+  charityId String?
+  amount    Float
+  payout    Float?
+  status    String        @default("PENDING")
+  user      User          @relation(fields: [userId], references: [id])
+  event     BettingEvent  @relation(fields: [eventId], references: [id])
+  option    BettingOption @relation(fields: [optionId], references: [id])
+  charity   Charity?      @relation(fields: [charityId], references: [id])
+  createdAt DateTime      @default(now())
+}
