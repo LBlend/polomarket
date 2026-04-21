@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+.git
+.env
+.env.*
+prisma/*.db
+prisma/*.db-journal
+README.md
+*.md
+.DS_Store
+Thumbs.db
