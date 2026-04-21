@@ -2,7 +2,7 @@ services:
   polomarket:
     build: .
     ports:
-      - "3000:3000"
+      - "1945:3000"
     env_file: .env
     environment:
       # Override DATABASE_URL so the DB lives on the named volume, not inside the container
