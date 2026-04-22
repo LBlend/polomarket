@@ -1,4 +1,4 @@
-# Polomarket — Mongol Rally 2025
+# Polomarket — Mongol Rally 2026
 
 ## Kom i gang
 

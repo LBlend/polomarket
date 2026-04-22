@@ -6,7 +6,7 @@ const PLACEHOLDER_POSTS = [
     media_type: "IMAGE",
     media_url: "https://picsum.photos/seed/polo1/600/600",
     thumbnail_url: null,
-    caption: "Tjukk Tuk is ready for adventure! We can't wait for the Mongol Rally 2025. Stay tuned! #mongolrally #polomarket",
+    caption: "Tjukk Tuk is ready for adventure! We can't wait for the Mongol Rally 2026. Stay tuned! #mongolrally #polomarket",
     timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
     permalink: "https://instagram.com",
   },

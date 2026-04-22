@@ -58,7 +58,7 @@ export default function TeamHero() {
           transition={{ duration: 0.7 }}
         >
           <p className="text-gold-500 text-sm font-semibold tracking-[0.3em] uppercase mb-3">
-            Mongol Rally 2025
+            Mongol Rally 2026
           </p>
           <h1 className="text-7xl sm:text-9xl font-display tracking-widest text-white leading-none mb-4">
             POLOMARKET
@@ -92,7 +92,7 @@ export default function TeamHero() {
                 TJUKK TUK
               </div>
               <div className="absolute bottom-6 right-6 bg-rally-red text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                Mongol Rally 2025
+                Mongol Rally 2026
               </div>
             </div>
 
