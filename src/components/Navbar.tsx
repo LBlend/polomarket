@@ -27,7 +27,7 @@ export default function Navbar() {
             <Link href="/#team" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
               Team
             </Link>
-            <Link href="/#kart" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
+            <Link href="/#map" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
               Map
             </Link>
             <Link href="/#instagram" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
@@ -93,7 +93,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-rally-card border-t border-rally-border px-4 py-4 space-y-3">
           <Link href="/#team" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Team</Link>
-          <Link href="/#kart" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Map</Link>
+          <Link href="/#map" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Map</Link>
           <Link href="/#instagram" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Instagram</Link>
           <Link href="/market" onClick={() => setOpen(false)} className="block text-sm text-gold-500 font-semibold py-2">Market</Link>
           <div className="pt-2 border-t border-rally-border">
