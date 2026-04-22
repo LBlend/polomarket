@@ -12,12 +12,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://polomarket.furumo.eu"),
   title: "Team Polomarket — Mongol Rally 2026",
   description: "Follow Team Polomarket on the Mongol Rally 2026 — from Oslo to Ulaanbaatar in Tjukk Tuk. Live GPS tracking, rimcoin betting and more.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
     title: "Team Polomarket — Mongol Rally 2026",
     description: "Live tracking, rimcoin betting, all for charity.",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
   },
 };
 

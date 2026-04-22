@@ -1,0 +1,96 @@
+<svg width="1080" height="1080" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Team Polomarket Logo</title>
+  <desc>Circular rally badge logo for Team Polomarket, Mongol Rally 2026</desc>
+
+  <style>
+    .badge-bg { fill: #1a1a2e; }
+    .outer-ring { fill: none; stroke: #e8b84b; stroke-width: 6; }
+    .inner-ring { fill: none; stroke: #e8b84b; stroke-width: 2; }
+    .accent-ring { fill: none; stroke: #c0392b; stroke-width: 3; }
+    .star { fill: #e8b84b; }
+    .mountain { fill: #2d4a6b; }
+    .mountain-snow { fill: #e8e8e8; }
+    .car-body { fill: #2e7d32; }
+    .car-roof { fill: #1b5e20; }
+    .car-window { fill: #7fb3d3; }
+    .wheel-outer { fill: #1a1a2e; }
+    .wheel-inner { fill: #888; }
+    .dust { fill: #c8a96e; opacity: 0.4; }
+    .text-main { font-family: 'Arial Black', Arial, sans-serif; font-weight: 900; fill: #e8b84b; text-anchor: middle; }
+    .text-sub { font-family: 'Arial', sans-serif; font-weight: 700; fill: #ffffff; text-anchor: middle; letter-spacing: 3px; }
+  </style>
+
+  <circle cx="340" cy="340" r="300" class="badge-bg"/>
+  <circle cx="340" cy="340" r="296" class="outer-ring"/>
+  <circle cx="340" cy="340" r="282" class="inner-ring"/>
+  <circle cx="340" cy="340" r="278" class="accent-ring"/>
+
+  <clipPath id="badge-clip">
+    <circle cx="340" cy="340" r="275"/>
+  </clipPath>
+
+  <g clip-path="url(#badge-clip)">
+    <rect x="65" y="65" width="550" height="550" fill="#0f1b35"/>
+    <circle cx="150" cy="160" r="2" class="star"/>
+    <circle cx="200" cy="130" r="1.5" class="star"/>
+    <circle cx="260" cy="145" r="2" class="star"/>
+    <circle cx="310" cy="120" r="1.5" class="star"/>
+    <circle cx="380" cy="140" r="2" class="star"/>
+    <circle cx="440" cy="125" r="1.5" class="star"/>
+    <circle cx="500" cy="155" r="2" class="star"/>
+    <circle cx="175" cy="190" r="1.5" class="star"/>
+    <circle cx="470" cy="185" r="1.5" class="star"/>
+    <circle cx="340" cy="295" r="38" fill="#e8b84b" opacity="0.9"/>
+    <circle cx="340" cy="295" r="28" fill="#f5c842"/>
+    <line x1="340" y1="245" x2="340" y2="235" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="374" y1="255" x2="381" y2="247" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="395" y1="285" x2="405" y2="282" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="390" y1="320" x2="400" y2="325" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="306" y1="255" x2="299" y2="247" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="285" y1="285" x2="275" y2="282" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <line x1="290" y1="320" x2="280" y2="325" stroke="#e8b84b" stroke-width="2.5" opacity="0.7"/>
+    <polygon points="65,420 160,280 255,420" class="mountain" opacity="0.7"/>
+    <polygon points="155,420 270,240 385,420" fill="#1e3a5f" opacity="0.85"/>
+    <polygon points="310,420 430,260 550,420" class="mountain" opacity="0.7"/>
+    <polygon points="430,420 530,290 630,420" fill="#1e3a5f" opacity="0.6"/>
+    <polygon points="270,240 242,290 298,290" class="mountain-snow" opacity="0.9"/>
+    <polygon points="160,280 140,310 180,310" class="mountain-snow" opacity="0.7"/>
+    <polygon points="430,260 410,295 450,295" class="mountain-snow" opacity="0.7"/>
+    <rect x="65" y="415" width="550" height="200" fill="#1a1a2e"/>
+    <rect x="65" y="415" width="550" height="8" fill="#2d2d4e"/>
+    <line x1="65" y1="510" x2="615" y2="510" stroke="#e8b84b" stroke-width="2" stroke-dasharray="12 8" fill="none"/>
+    <ellipse cx="210" cy="450" rx="45" ry="18" class="dust"/>
+    <ellipse cx="175" cy="460" rx="30" ry="12" class="dust"/>
+    <ellipse cx="230" cy="465" rx="25" ry="10" class="dust"/>
+    <circle cx="295" cy="462" r="24" class="wheel-outer"/>
+    <circle cx="295" cy="462" r="16" class="wheel-inner"/>
+    <circle cx="295" cy="462" r="6" fill="#e8b84b"/>
+    <circle cx="430" cy="462" r="24" class="wheel-outer"/>
+    <circle cx="430" cy="462" r="16" class="wheel-inner"/>
+    <circle cx="430" cy="462" r="6" fill="#e8b84b"/>
+    <rect x="250" y="415" width="220" height="50" rx="6" class="car-body"/>
+    <path d="M290 415 Q305 375 370 370 Q420 368 440 415 Z" class="car-roof"/>
+    <path d="M298 413 Q308 385 358 382 Q390 380 400 413 Z" class="car-window" opacity="0.85"/>
+    <rect x="460" y="430" width="18" height="10" rx="3" fill="#f5e47a" opacity="0.9"/>
+    <rect x="462" y="443" width="14" height="6" rx="2" fill="#888"/>
+    <rect x="248" y="435" width="10" height="8" rx="2" fill="#c0392b" opacity="0.7"/>
+    <rect x="360" y="355" width="3" height="22" fill="#888"/>
+    <polygon points="363,355 380,362 363,369" fill="#e8b84b"/>
+    <path d="M115 390 Q200 360 340 355 Q450 350 560 390" fill="none" stroke="#e8b84b" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.5"/>
+    <circle cx="115" cy="390" r="4" fill="#e8b84b" opacity="0.7"/>
+    <circle cx="560" cy="390" r="4" fill="#c0392b" opacity="0.7"/>
+  </g>
+
+  <path id="topArc" d="M 100,340 A 240,240 0 0,1 580,340" fill="none"/>
+  <text class="text-main" font-size="38">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">TEAM POLOMARKET</textPath>
+  </text>
+  <path id="bottomArc" d="M 105,360 A 235,235 0 0,0 575,360" fill="none"/>
+  <text class="text-sub" font-size="16">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MONGOL RALLY</textPath>
+  </text>
+  <rect x="310" y="600" width="60" height="22" rx="4" fill="#c0392b"/>
+  <text x="340" y="616" class="text-main" font-size="13" fill="#ffffff">2026</text>
+  <circle cx="178" cy="340" r="4" fill="#e8b84b"/>
+  <circle cx="502" cy="340" r="4" fill="#e8b84b"/>
+</svg>
