@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Providers from "./providers";
 import Navbar from "@/components/Navbar";
@@ -32,7 +33,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
-          <script
+          <Script
             defer
             src={process.env.NEXT_PUBLIC_UMAMI_SRC ?? "https://cloud.umami.is/script.js"}
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
