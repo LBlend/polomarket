@@ -58,7 +58,7 @@ export default function RootLayout({
           <footer className="border-t border-rally-border bg-rally-dark py-10 px-4">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-600">
               <span className="font-display tracking-widest text-gold-700">TEAM POLOMARKET</span>
-              <span>Mongol Rally 2026 - Oslo → Ulaanbaatar</span>
+              <span>Mongol Rally 2026 | Oslo → Ulaanbaatar</span>
               <span>All proceeds to charity</span>
             </div>
           </footer>
