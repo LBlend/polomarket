@@ -16,25 +16,16 @@ interface CharitySelectorProps {
   onSelect: (id: string) => Promise<void>;
 }
 
-const CHARITY_INFO: Record<string, { description: string; color: string }> = {
+const CHARITY_INFO: Record<string, { description: string }> = {
   "bla-kors": {
     description: "Helping people and families affected by substance abuse",
-    color: "blue",
   },
   "leger-uten-grenser": {
     description: "Medical emergency aid where crises hit hardest",
-    color: "red",
   },
   "mental-helse-ungdom": {
     description: "Working for good mental health and quality of life for young people",
-    color: "green",
   },
-};
-
-const colorMap: Record<string, string> = {
-  blue: "border-blue-500 bg-blue-500/10",
-  red: "border-red-500 bg-red-500/10",
-  green: "border-green-500 bg-green-500/10",
 };
 
 export default function CharitySelector({
@@ -54,7 +45,7 @@ export default function CharitySelector({
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-4">
-        <Heart size={16} className="text-red-400" />
+        <Heart size={16} className="text-gold-500" />
         <h3 className="text-sm font-semibold text-white tracking-wide uppercase">
           Choose your charity
         </h3>
@@ -65,7 +56,6 @@ export default function CharitySelector({
       {charities.map((charity) => {
         const info = CHARITY_INFO[charity.slug];
         const isSelected = charity.id === selectedId;
-        const color = info?.color ?? "gold";
 
         return (
           <button
@@ -74,7 +64,7 @@ export default function CharitySelector({
             disabled={loading !== null}
             className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
               isSelected
-                ? colorMap[color] ?? "border-gold-500 bg-gold-500/10"
+                ? "border-gold-500 bg-gold-500/10"
                 : "border-rally-border bg-neutral-900 hover:border-neutral-600"
             }`}
           >
@@ -102,7 +92,7 @@ export default function CharitySelector({
                 <div
                   className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
                     isSelected
-                      ? "border-current bg-current"
+                      ? "border-gold-500 bg-gold-500"
                       : "border-neutral-600"
                   }`}
                 >
