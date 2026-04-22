@@ -32,15 +32,15 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
           rel="stylesheet"
         />
-        {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
-          <Script
-            defer
-            src={process.env.NEXT_PUBLIC_UMAMI_SRC ?? "https://cloud.umami.is/script.js"}
-            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-          />
-        )}
       </head>
       <body>
+        {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          <Script
+            src={process.env.NEXT_PUBLIC_UMAMI_SRC ?? "https://cloud.umami.is/script.js"}
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+            strategy="afterInteractive"
+          />
+        )}
         <Providers>
           <div className="fixed top-0 inset-x-0 z-[60] w-full bg-amber-950/80 backdrop-blur-sm border-b border-amber-800/50 text-amber-300 text-xs text-center py-1.5 px-4 tracking-wide">
             🚧 This site is under development — things may be broken or change without notice.
