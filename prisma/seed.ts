@@ -148,7 +148,8 @@ async function main() {
     { name: "M41", lat: 38.1671, lng: 73.9686, order: 23, visited: false },
     { name: "Bishkek", lat: 42.8746, lng: 74.5698, order: 24, visited: false },
     { name: "Almaty", lat: 43.2551, lng: 76.9126, order: 25, visited: false },
-    { name: "Ulaanbaatar", lat: 47.8864, lng: 106.9057, order: 26, visited: false },
+    { name: "Oskemen", lat: 49.9656, lng: 82.6059, order: 26, visited: false },
+    { name: "Ulaanbaatar", lat: 47.8864, lng: 106.9057, order: 27, visited: false },
   ];
 
   await prisma.waypoint.deleteMany();
