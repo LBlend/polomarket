@@ -41,6 +41,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma  ./node_modu
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma  ./node_modules/@prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma   ./node_modules/prisma
 
+# sharp: fast image optimization (requires its pre-built platform binaries)
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/sharp    ./node_modules/sharp
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@img     ./node_modules/@img
+
 COPY --chown=nextjs:nodejs docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
