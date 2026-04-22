@@ -15,46 +15,18 @@ async function main() {
   if (count > 0) console.log(`  Granted ${STARTING_RIMCOINS} starting rimcoins to ${count} user(s)`);
 
   // Charities
-  const charities = await Promise.all([
-    prisma.charity.upsert({
-      where: { slug: "cool-earth" },
-      update: {},
-      create: {
-        name: "Cool Earth",
-        slug: "cool-earth",
-        url: "https://www.coolearth.org",
-      },
-    }),
-    prisma.charity.upsert({
-      where: { slug: "bla-kors" },
-      update: {},
-      create: {
-        name: "Blå Kors",
-        slug: "bla-kors",
-        url: "https://blakors.no",
-      },
-    }),
-    prisma.charity.upsert({
-      where: { slug: "leger-uten-grenser" },
-      update: {},
-      create: {
-        name: "Leger uten grenser",
-        slug: "leger-uten-grenser",
-        url: "https://legerutengrenser.no",
-      },
-    }),
-    prisma.charity.upsert({
-      where: { slug: "mental-helse-ungdom" },
-      update: {},
-      create: {
-        name: "Mental Helse Ungdom",
-        slug: "mental-helse-ungdom",
-        url: "https://mentalhelse.no/om-oss/mental-helse-ungdom",
-      },
-    }),
-  ]);
+  await prisma.charity.deleteMany({ where: { slug: { not: "cool-earth" } } });
+  await prisma.charity.upsert({
+    where: { slug: "cool-earth" },
+    update: {},
+    create: {
+      name: "Cool Earth",
+      slug: "cool-earth",
+      url: "https://www.coolearth.org",
+    },
+  });
 
-  console.log(`Created ${charities.length} charities`);
+  console.log("Ensured Cool Earth is the only charity");
 
   // Betting events
   const events = [
