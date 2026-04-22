@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Flag, Wrench, Users } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 const TEAM_MEMBERS = [
   {
@@ -9,24 +11,28 @@ const TEAM_MEMBERS = [
     role: "Engineer",
     emoji: "🔧",
     bio: "Responsible for making sure our Tjukk Tuk actually starts.",
+    gif: "/gifs/sebastian.gif",
   },
   {
     name: "Sahib",
     role: "Navigator",
     emoji: "🗺️",
     bio: "Always knows roughly where we are",
+    gif: "/gifs/sahib.gif",
   },
   {
     name: "Sivert",
     role: "Logistics & Economics",
     emoji: "🛡️",
     bio: "Makes sure we have the money to do this in the first place.",
+    gif: "/gifs/sivert.gif",
   },
   {
     name: "Leander",
     role: "Social Media & Documentarian",
     emoji: "📸",
     bio: "Always has a camera in hand, documenting our journey and making sure the world knows about our questionable decisions.",
+    gif: "/gifs/leander.gif",
   },
 ];
 
@@ -47,6 +53,131 @@ const fadeUp = {
     transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
   }),
 };
+
+function TeamCard({ member, index }: { member: (typeof TEAM_MEMBERS)[0]; index: number }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      key={member.name}
+      custom={index}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="relative"
+    >
+      <motion.div
+        className="bg-rally-card border rounded-2xl overflow-hidden cursor-pointer select-none"
+        animate={{
+          borderColor: hovered ? "#d97706" : "#262626",
+          boxShadow: hovered
+            ? "0 0 24px rgba(217, 119, 6, 0.2)"
+            : "0 0 0px rgba(0,0,0,0)",
+        }}
+        transition={{ duration: 0.2 }}
+        onHoverStart={() => setHovered(true)}
+        onHoverEnd={() => setHovered(false)}
+        onClick={() => setHovered((v) => !v)}
+      >
+        {/* Media area */}
+        <div className="relative aspect-square bg-neutral-900 flex items-center justify-center overflow-hidden">
+          <AnimatePresence>
+            {!hovered && (
+              <motion.div
+                key="emoji"
+                className="text-7xl absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {member.emoji}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {hovered && member.gif && (
+              <motion.div
+                key="gif"
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Image
+                  src={member.gif}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Fallback when hovered but no GIF */}
+          <AnimatePresence>
+            {hovered && !member.gif && (
+              <motion.div
+                key="emoji-hovered"
+                className="text-7xl absolute inset-0 flex items-center justify-center bg-neutral-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {member.emoji}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Info area */}
+        <div className="p-4 text-center">
+          <h3 className="text-lg font-display tracking-wider text-white mb-0.5">
+            {member.name}
+          </h3>
+
+          <AnimatePresence initial={false}>
+            {!hovered && (
+              <motion.p
+                key="role"
+                className="text-gold-500 text-xs uppercase tracking-wider"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {member.role}
+              </motion.p>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence initial={false}>
+            {hovered && (
+              <motion.div
+                key="bio"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden"
+              >
+                <p className="text-gold-500 text-xs uppercase tracking-wider mb-2">
+                  {member.role}
+                </p>
+                <p className="text-neutral-400 text-sm leading-relaxed">{member.bio}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function TeamHero() {
   return (
@@ -134,28 +265,9 @@ export default function TeamHero() {
           >
             THE TEAM
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-start">
             {TEAM_MEMBERS.map((member, i) => (
-              <motion.div
-                key={member.name}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-rally-card border border-rally-border rounded-2xl p-6 text-center hover:border-gold-700 transition-colors group"
-              >
-                <div className="w-24 h-24 rounded-full bg-neutral-800 border-2 border-rally-border group-hover:border-gold-700 transition-colors mx-auto mb-4 flex items-center justify-center text-4xl">
-                  {member.emoji}
-                </div>
-                <h3 className="text-xl font-display tracking-wider text-white mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-gold-500 text-xs uppercase tracking-wider mb-3">
-                  {member.role}
-                </p>
-                <p className="text-neutral-400 text-sm">{member.bio}</p>
-              </motion.div>
+              <TeamCard key={member.name} member={member} index={i} />
             ))}
           </div>
         </div>
