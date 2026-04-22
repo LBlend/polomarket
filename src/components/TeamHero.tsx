@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Flag, Wrench, Users } from "lucide-react";
 import Image from "next/image";
-import tjukkTuk from "../../public/tjukk_tuk.jpg";
 import { useState } from "react";
 
 const TEAM_MEMBERS = [
@@ -222,7 +221,7 @@ export default function TeamHero() {
             {/* Car image placeholder */}
             <div className="aspect-[16/7] relative overflow-hidden">
               <Image
-                src={tjukkTuk}
+                src="/tjukk_tuk.jpg"
                 alt="Tjukk Tuk"
                 fill
                 className="object-cover"
