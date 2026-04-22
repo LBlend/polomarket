@@ -5,22 +5,28 @@ import { Flag, Wrench, Users } from "lucide-react";
 
 const TEAM_MEMBERS = [
   {
-    name: "Leander",
-    role: "Driver & Mechanic",
+    name: "Sebastian",
+    role: "Engineer",
     emoji: "🔧",
-    bio: "Responsible for making sure Tjukk Tuk actually starts.",
+    bio: "Responsible for making sure our Tjukk Tuk actually starts.",
   },
   {
-    name: "Team member 2",
-    role: "Navigator & Chef",
+    name: "Sahib",
+    role: "Navigator",
     emoji: "🗺️",
-    bio: "Always knows roughly where we are.",
+    bio: "Always knows roughly where we are",
   },
   {
-    name: "Team member 3",
-    role: "Photographer & Morale Officer",
+    name: "Sivert",
+    role: "Logistics & Economics",
+    emoji: "🛡️",
+    bio: "Makes sure we have the money to do this in the first place.",
+  },
+  {
+    name: "Leander",
+    role: "Social Media & Documentarian",
     emoji: "📸",
-    bio: "Documents everything — especially the breakdowns.",
+    bio: "Always has a camera in hand, documenting our journey and making sure the world knows about our questionable decisions.",
   },
 ];
 
