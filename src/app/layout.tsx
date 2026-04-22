@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Providers from "./providers";
 import Navbar from "@/components/Navbar";
+import UmamiAnalytics from "@/components/UmamiAnalytics";
+import { getAnalyticsConfig } from "@/lib/analyticsConfig";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +26,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const analyticsConfig = getAnalyticsConfig();
+
   return (
     <html lang="en" className={inter.variable}>
       <head>
@@ -34,13 +37,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
-          <Script
-            src={process.env.NEXT_PUBLIC_UMAMI_SRC ?? "https://cloud.umami.is/script.js"}
-            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-            strategy="afterInteractive"
-          />
-        )}
         <Providers>
           <div className="fixed top-0 inset-x-0 z-[60] w-full bg-amber-950/80 backdrop-blur-sm border-b border-amber-800/50 text-amber-300 text-xs text-center py-1.5 px-4 tracking-wide">
             🚧 This site is under development — things may be broken or change without notice.
@@ -56,6 +52,13 @@ export default function RootLayout({
             </div>
           </footer>
         </Providers>
+        {analyticsConfig?.enabled && (
+          <UmamiAnalytics
+            websiteId={analyticsConfig.websiteId}
+            src={analyticsConfig.src}
+            domains={analyticsConfig.domains}
+          />
+        )}
       </body>
     </html>
   );
