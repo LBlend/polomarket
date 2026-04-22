@@ -14,7 +14,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  rimcoins      Float     @default(0)
+  rimcoins      Float     @default(100)
   charityId     String?
   charity       Charity?  @relation(fields: [charityId], references: [id])
   isAdmin       Boolean   @default(false)

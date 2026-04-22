@@ -2,8 +2,17 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const STARTING_RIMCOINS = 100;
+
 async function main() {
   console.log("Seeding database...");
+
+  // Grant starting balance to any existing users who have none
+  const { count } = await prisma.user.updateMany({
+    where: { rimcoins: { lt: STARTING_RIMCOINS } },
+    data: { rimcoins: STARTING_RIMCOINS },
+  });
+  if (count > 0) console.log(`  Granted ${STARTING_RIMCOINS} starting rimcoins to ${count} user(s)`);
 
   // Charities
   const charities = await Promise.all([
