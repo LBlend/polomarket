@@ -107,23 +107,18 @@ async function main() {
     },
   ];
 
+  await prisma.bet.deleteMany();
+  await prisma.bettingEvent.deleteMany();
   for (const event of events) {
-    const exists = await prisma.bettingEvent.findFirst({
-      where: { title: event.title },
-    });
-    if (exists) continue;
-
     await prisma.bettingEvent.create({
       data: {
         title: event.title,
         description: event.description,
-        options: {
-          create: event.options,
-        },
+        options: { create: event.options },
       },
     });
-    console.log(`  Created event: ${event.title}`);
   }
+  console.log(`Created ${events.length} betting events`);
 
   // Route waypoints (classic Mongol Rally route)
   const waypoints = [
