@@ -17,6 +17,15 @@ async function main() {
   // Charities
   const charities = await Promise.all([
     prisma.charity.upsert({
+      where: { slug: "cool-earth" },
+      update: {},
+      create: {
+        name: "Cool Earth",
+        slug: "cool-earth",
+        url: "https://www.coolearth.org",
+      },
+    }),
+    prisma.charity.upsert({
       where: { slug: "bla-kors" },
       update: {},
       create: {

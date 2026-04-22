@@ -17,6 +17,9 @@ interface CharitySelectorProps {
 }
 
 const CHARITY_INFO: Record<string, { description: string }> = {
+  "cool-earth": {
+    description: "Protecting rainforests to halt climate change. The official Mongol Rally charity",
+  },
   "bla-kors": {
     description: "Helping people and families affected by substance abuse",
   },
