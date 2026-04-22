@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Flag, Wrench, Users } from "lucide-react";
 import Image from "next/image";
+import tjukkTuk from "../../public/tjukk_tuk.jpg";
 import { useState } from "react";
 
 const TEAM_MEMBERS = [
@@ -219,11 +220,14 @@ export default function TeamHero() {
         >
           <div className="relative rounded-3xl overflow-hidden border border-rally-border bg-rally-card">
             {/* Car image placeholder */}
-            <div className="aspect-[16/7] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 flex items-center justify-center relative">
-              <div className="text-center">
-                <div className="text-8xl mb-4">🚗</div>
-                <p className="text-neutral-600 text-sm">Add a photo of Tjukk Tuk here</p>
-              </div>
+            <div className="aspect-[16/7] relative overflow-hidden">
+              <Image
+                src={tjukkTuk}
+                alt="Tjukk Tuk"
+                fill
+                className="object-cover"
+                priority
+              />
               {/* Decorative sticker-style label */}
               <div className="absolute top-6 left-6 bg-gold-500 text-black font-display text-2xl tracking-widest px-4 py-2 rounded-lg rotate-[-2deg] shadow-lg">
                 TJUKK TUK
