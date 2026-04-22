@@ -42,7 +42,7 @@ const CAR_SPECS = [
   { label: "Horsepower", value: "60 (on a good day)" },
   { label: "Age", value: "2000 (Vintage)" },
   { label: "Air conditioning", value: "Open the window" },
-  { label: "GPS", value: "1994 road atlas" },
+  { label: "Kilometerage", value: "230,000+ km" },
   { label: "Spare parts", value: "Plenty of prayers" },
 ];
 
