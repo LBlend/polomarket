@@ -70,9 +70,9 @@ function TeamCard({ member, index }: { member: (typeof TEAM_MEMBERS)[0]; index: 
       <motion.div
         className="bg-rally-card border rounded-2xl overflow-hidden cursor-pointer select-none"
         animate={{
-          borderColor: hovered ? "#d97706" : "#262626",
+          borderColor: hovered ? "#166e57" : "#262626",
           boxShadow: hovered
-            ? "0 0 24px rgba(217, 119, 6, 0.2)"
+            ? "0 0 24px rgba(22, 110, 87, 0.3)"
             : "0 0 0px rgba(0,0,0,0)",
         }}
         transition={{ duration: 0.2 }}
@@ -184,7 +184,7 @@ export default function TeamHero() {
     <section className="relative min-h-screen pt-24 pb-20 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-rally-dark via-neutral-950 to-rally-dark pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(245,158,11,0.12),transparent)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(30,138,110,0.12),transparent)] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}

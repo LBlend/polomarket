@@ -25,8 +25,8 @@ const currentLocationIcon = L.divIcon({
   className: "",
   html: `
     <div style="position:relative;width:20px;height:20px;">
-      <div style="position:absolute;inset:0;border-radius:50%;background:#f59e0b;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;opacity:0.6;"></div>
-      <div style="position:absolute;inset:3px;border-radius:50%;background:#d97706;border:2px solid #fff;box-shadow:0 0 8px rgba(245,158,11,0.8);"></div>
+      <div style="position:absolute;inset:0;border-radius:50%;background:#1e8a6e;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;opacity:0.6;"></div>
+      <div style="position:absolute;inset:3px;border-radius:50%;background:#166e57;border:2px solid #fff;box-shadow:0 0 8px rgba(30,138,110,0.8);"></div>
     </div>`,
   iconSize: [20, 20],
   iconAnchor: [10, 10],
@@ -119,7 +119,7 @@ export default function MapInner({
         {trackPoints.length > 1 && (
           <Polyline
             positions={trackPoints}
-            pathOptions={{ color: "#f59e0b", weight: 3, opacity: 0.85 }}
+            pathOptions={{ color: "#1e8a6e", weight: 3, opacity: 0.85 }}
           />
         )}
 
