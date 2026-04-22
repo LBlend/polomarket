@@ -3,17 +3,29 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Coins, TrendingUp, Trophy, Lock, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
-import { formatRimcoins, formatOdds } from "@/lib/utils";
+import { Coins, TrendingUp, Trophy, Lock, ChevronDown, ChevronUp, Loader2, Info } from "lucide-react";
+import { formatRimcoins } from "@/lib/utils";
 import CharitySelector from "./CharitySelector";
 import AuthModal from "./AuthModal";
 import type { BettingEventData, CharityData } from "@/types";
 
 const STATUS_LABELS: Record<string, { label: string; color: string }> = {
-  OPEN: { label: "Open", color: "text-green-400" },
-  CLOSED: { label: "Closed", color: "text-amber-400" },
+  OPEN: { label: "Open", color: "text-gold-400" },
+  CLOSED: { label: "Closed", color: "text-neutral-500" },
   RESOLVED: { label: "Resolved", color: "text-neutral-500" },
 };
+
+function formatOdds(odds: number | null): string {
+  if (odds === null) return "—";
+  return `${odds.toFixed(2)}x`;
+}
+
+// Estimate payout if user bets `amount` on an option right now
+function estimatePayout(amount: number, optionTotal: number, totalPool: number): number {
+  const newPool = totalPool + amount;
+  const newOptionTotal = optionTotal + amount;
+  return (amount / newOptionTotal) * newPool;
+}
 
 function EventCard({
   event,
@@ -35,7 +47,8 @@ function EventCard({
 
   const status = STATUS_LABELS[event.status] ?? STATUS_LABELS.CLOSED;
   const canBet = event.status === "OPEN" && !event.userBet;
-  const totalBets = event.options.reduce((s, o) => s + (o.betCount ?? 0), 0);
+  const totalPool = event.totalPool;
+  const totalBetCount = event.options.reduce((s, o) => s + o.betCount, 0);
 
   const handleBet = async () => {
     if (!session) { onLoginRequired(); return; }
@@ -48,6 +61,11 @@ function EventCard({
     await onBet(event.id, selectedOption, amt);
     setPlacing(false);
   };
+
+  const selectedOpt = event.options.find((o) => o.id === selectedOption);
+  const estimatedPayout = selectedOpt && Number(amount) > 0
+    ? estimatePayout(Number(amount), selectedOpt.totalAmount, totalPool)
+    : null;
 
   return (
     <motion.div
@@ -66,9 +84,11 @@ function EventCard({
             <span className={`text-xs font-semibold uppercase tracking-wider ${status.color}`}>
               {status.label}
             </span>
-            {event.totalBets ? (
-              <span className="text-xs text-neutral-600">{event.totalBets} bets</span>
-            ) : null}
+            {totalBetCount > 0 && (
+              <span className="text-xs text-neutral-600">
+                {totalBetCount} bet{totalBetCount !== 1 ? "s" : ""} · {formatRimcoins(totalPool)} pool
+              </span>
+            )}
           </div>
           <h3 className="text-base font-semibold text-white leading-snug">{event.title}</h3>
           {event.description && (
@@ -77,7 +97,7 @@ function EventCard({
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {event.userBet && (
-            <span className="text-xs bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-2 py-1 rounded-full">
+            <span className="text-xs bg-gold-500/15 text-gold-400 border border-gold-500/30 px-2 py-1 rounded-full">
               Bet placed
             </span>
           )}
@@ -85,7 +105,6 @@ function EventCard({
         </div>
       </button>
 
-      {/* Options */}
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -96,8 +115,22 @@ function EventCard({
             className="overflow-hidden"
           >
             <div className="px-5 pb-5 space-y-3">
+              {/* Dynamic odds note */}
+              {event.status === "OPEN" && totalPool === 0 && (
+                <div className="flex items-center gap-2 text-xs text-neutral-600 bg-neutral-900 rounded-xl px-3 py-2">
+                  <Info size={12} />
+                  Odds update live as bets come in — be the first!
+                </div>
+              )}
+              {event.status === "OPEN" && totalPool > 0 && (
+                <div className="flex items-center gap-2 text-xs text-neutral-600 bg-neutral-900 rounded-xl px-3 py-2">
+                  <Info size={12} />
+                  Live odds — payouts shift as more bets are placed.
+                </div>
+              )}
+
               {event.options.map((option) => {
-                const pct = totalBets > 0 ? ((option.betCount ?? 0) / totalBets) * 100 : 0;
+                const poolPct = totalPool > 0 ? (option.totalAmount / totalPool) * 100 : 0;
                 const isUserChoice = event.userBet?.optionId === option.id;
 
                 return (
@@ -107,55 +140,69 @@ function EventCard({
                     onClick={() => canBet && setSelectedOption(option.id)}
                     className={`w-full text-left rounded-xl border-2 p-3 transition-all relative overflow-hidden ${
                       option.isWinner
-                        ? "border-green-500 bg-green-500/10"
-                        : selectedOption === option.id
                         ? "border-gold-500 bg-gold-500/10"
+                        : selectedOption === option.id
+                        ? "border-white/30 bg-white/5"
                         : isUserChoice
-                        ? "border-indigo-500 bg-indigo-500/10"
+                        ? "border-neutral-500 bg-neutral-500/10"
                         : "border-rally-border bg-neutral-900 hover:border-neutral-600"
                     }`}
                   >
+                    {/* Pool share bar */}
                     <div
-                      className="absolute inset-y-0 left-0 bg-white/5 transition-all duration-500"
-                      style={{ width: `${pct}%` }}
+                      className="absolute inset-y-0 left-0 bg-white/[0.04] transition-all duration-700"
+                      style={{ width: `${poolPct}%` }}
                     />
-                    <div className="relative flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        {option.isWinner && <Trophy size={14} className="text-green-400" />}
-                        <span className={`text-sm font-semibold ${option.isWinner ? "text-green-300" : "text-white"}`}>
+                    <div className="relative flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        {option.isWinner && <Trophy size={14} className="text-gold-400 shrink-0" />}
+                        <span className={`text-sm font-semibold truncate ${option.isWinner ? "text-gold-300" : "text-white"}`}>
                           {option.label}
                         </span>
                         {isUserChoice && !option.isWinner && (
-                          <span className="text-xs text-indigo-400">(your bet)</span>
+                          <span className="text-xs text-neutral-500 shrink-0">(your bet)</span>
                         )}
                       </div>
-                      <div className="flex items-center gap-3 text-right">
-                        <span className={`text-sm font-bold ${option.isWinner ? "text-green-400" : "text-gold-500"}`}>
-                          {formatOdds(option.odds)}
+                      <div className="flex items-center gap-3 shrink-0">
+                        <span className={`text-sm font-bold tabular-nums ${option.isWinner ? "text-gold-400" : "text-gold-500"}`}>
+                          {formatOdds(option.impliedOdds)}
                         </span>
-                        <span className="text-xs text-neutral-600">{pct.toFixed(0)}%</span>
+                        <span className="text-xs text-neutral-600 w-8 text-right tabular-nums">
+                          {poolPct.toFixed(0)}%
+                        </span>
                       </div>
                     </div>
                   </button>
                 );
               })}
 
-              {/* Already bet info */}
+              {/* User's existing bet */}
               {event.userBet && (
-                <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-xl p-3 text-sm">
-                  <div className="flex justify-between text-indigo-300">
-                    <span>Your bet:</span>
+                <div className="bg-neutral-900 border border-rally-border rounded-xl p-3 text-sm space-y-1">
+                  <div className="flex justify-between text-neutral-300">
+                    <span>Your stake</span>
                     <span className="font-semibold">{formatRimcoins(event.userBet.amount)}</span>
                   </div>
-                  {event.userBet.status === "WON" && event.userBet.payout && (
-                    <div className="flex justify-between text-green-400 mt-1">
-                      <span>Winnings:</span>
+                  {event.userBet.status === "WON" && event.userBet.payout != null && (
+                    <div className="flex justify-between text-gold-400">
+                      <span>Payout</span>
                       <span className="font-bold">{formatRimcoins(event.userBet.payout)}</span>
                     </div>
                   )}
                   {event.userBet.status === "LOST" && (
-                    <p className="text-red-400 mt-1 text-xs">Unlucky — you lost this bet.</p>
+                    <p className="text-neutral-500 text-xs">This bet didn&apos;t win.</p>
                   )}
+                  {event.userBet.status === "PENDING" && totalPool > 0 && (() => {
+                    const opt = event.options.find((o) => o.id === event.userBet!.optionId);
+                    if (!opt || opt.totalAmount === 0) return null;
+                    const currentEst = (event.userBet.amount / opt.totalAmount) * totalPool;
+                    return (
+                      <div className="flex justify-between text-neutral-500 text-xs pt-1 border-t border-rally-border">
+                        <span>Current est. payout</span>
+                        <span>{formatRimcoins(currentEst)}</span>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
 
@@ -186,16 +233,22 @@ function EventCard({
                     ))}
                   </div>
 
-                  {selectedOption && Number(amount) > 0 && (
-                    <p className="text-xs text-neutral-500">
-                      Potential payout:{" "}
-                      <span className="text-gold-400 font-semibold">
-                        {formatRimcoins(
-                          Number(amount) *
-                            (event.options.find((o) => o.id === selectedOption)?.odds ?? 1)
-                        )}
-                      </span>
-                    </p>
+                  {estimatedPayout !== null && selectedOpt && (
+                    <div className="text-xs text-neutral-500 space-y-0.5">
+                      <div className="flex justify-between">
+                        <span>Est. payout if you win</span>
+                        <span className="text-gold-400 font-semibold">{formatRimcoins(estimatedPayout)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Est. odds</span>
+                        <span className="text-neutral-400">
+                          {(estimatedPayout / Number(amount)).toFixed(2)}x
+                        </span>
+                      </div>
+                      <p className="text-neutral-700 pt-0.5">
+                        Final payout depends on bets placed before the event closes.
+                      </p>
+                    </div>
                   )}
 
                   {error && <p className="text-red-400 text-xs">{error}</p>}
@@ -289,7 +342,6 @@ export default function BettingMarket() {
   return (
     <section className="py-20 bg-rally-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-12 text-center">
           <p className="text-gold-500 text-xs font-semibold tracking-[0.3em] uppercase mb-2">
             Betting for charity
@@ -298,14 +350,13 @@ export default function BettingMarket() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-xl mx-auto text-sm">
-            Use rimcoins to bet on rally outcomes. 100% of winnings and losses go to your chosen charity.
+            Use rimcoins to bet on rally outcomes. Odds shift as bets come in — winners share the entire pool.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Balance card */}
             <div className="bg-rally-card border border-rally-border rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-gold-600/20 flex items-center justify-center">
@@ -341,7 +392,6 @@ export default function BettingMarket() {
               )}
             </div>
 
-            {/* Charity selector */}
             {session && charities.length > 0 && (
               <div className="bg-rally-card border border-rally-border rounded-2xl p-6">
                 <CharitySelector
@@ -359,6 +409,21 @@ export default function BettingMarket() {
                 </p>
               </div>
             )}
+
+            {/* How it works */}
+            <div className="bg-rally-card border border-rally-border rounded-2xl p-5 space-y-3">
+              <p className="text-xs font-semibold text-white uppercase tracking-wider">How it works</p>
+              {[
+                ["Live odds", "Odds shift as people bet. Popular options pay less; bold picks pay more."],
+                ["Parimutuel pool", "All stakes go into one pool. Winners split it proportional to their stake."],
+                ["All for charity", "Your balance converts to EUR and goes to your chosen charity."],
+              ].map(([title, desc]) => (
+                <div key={title}>
+                  <p className="text-xs text-neutral-300 font-medium">{title}</p>
+                  <p className="text-xs text-neutral-600 mt-0.5">{desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Events */}

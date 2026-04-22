@@ -14,14 +14,12 @@ export async function GET(req: NextRequest) {
     include: {
       options: {
         include: {
-          _count: { select: { bets: true } },
+          bets: { select: { amount: true } },
         },
       },
-      _count: { select: { bets: true } },
     },
   });
 
-  // Attach user's existing bet per event if logged in
   const userBets = session?.user?.id
     ? await prisma.bet.findMany({
         where: { userId: session.user.id },
@@ -32,9 +30,11 @@ export async function GET(req: NextRequest) {
   const userBetMap = new Map(userBets.map((b) => [b.eventId, b]));
 
   const result = events.map((event) => {
-    const totalBetted = event.options.reduce((sum, opt) => {
-      return sum + (opt._count?.bets ?? 0);
-    }, 0);
+    // Total rimcoins in the pool across all options
+    const totalPool = event.options.reduce(
+      (sum, opt) => sum + opt.bets.reduce((s, b) => s + b.amount, 0),
+      0
+    );
 
     return {
       id: event.id,
@@ -42,14 +42,21 @@ export async function GET(req: NextRequest) {
       description: event.description,
       status: event.status,
       resolvedAt: event.resolvedAt,
-      totalBets: totalBetted,
-      options: event.options.map((opt) => ({
-        id: opt.id,
-        label: opt.label,
-        odds: opt.odds,
-        isWinner: opt.isWinner,
-        betCount: opt._count?.bets ?? 0,
-      })),
+      totalPool,
+      options: event.options.map((opt) => {
+        const optionTotal = opt.bets.reduce((s, b) => s + b.amount, 0);
+        // Parimutuel implied odds: totalPool / optionTotal
+        // null means no bets placed on this option yet
+        const impliedOdds = optionTotal > 0 ? totalPool / optionTotal : null;
+        return {
+          id: opt.id,
+          label: opt.label,
+          impliedOdds,
+          isWinner: opt.isWinner,
+          betCount: opt.bets.length,
+          totalAmount: optionTotal,
+        };
+      }),
       userBet: userBetMap.get(event.id) ?? null,
     };
   });
@@ -74,10 +81,7 @@ export async function POST(req: NextRequest) {
       title,
       description,
       options: {
-        create: options.map((o: { label: string; odds: number }) => ({
-          label: o.label,
-          odds: o.odds,
-        })),
+        create: options.map((o: { label: string }) => ({ label: o.label, odds: 1 })),
       },
     },
     include: { options: true },
@@ -109,32 +113,29 @@ export async function PATCH(req: NextRequest) {
           }
         : undefined,
     },
-    include: { options: true },
   });
 
-  // Pay out winning bets
+  // Parimutuel payout: winners split the entire pool proportional to their stake
   if (status === "RESOLVED" && winnerOptionId) {
-    const winningOption = event.options.find((o) => o.id === winnerOptionId);
-    if (winningOption) {
-      const winningBets = await prisma.bet.findMany({
-        where: { eventId: id, optionId: winnerOptionId },
-      });
-      for (const bet of winningBets) {
-        const payout = bet.amount * winningOption.odds;
-        await prisma.bet.update({
-          where: { id: bet.id },
-          data: { status: "WON", payout },
-        });
-        await prisma.user.update({
-          where: { id: bet.userId },
-          data: { rimcoins: { increment: payout } },
-        });
-      }
-      await prisma.bet.updateMany({
-        where: { eventId: id, optionId: { not: winnerOptionId } },
-        data: { status: "LOST" },
+    const allBets = await prisma.bet.findMany({ where: { eventId: id } });
+    const totalPool = allBets.reduce((sum, b) => sum + b.amount, 0);
+    const winningBets = allBets.filter((b) => b.optionId === winnerOptionId);
+    const totalWinningStake = winningBets.reduce((sum, b) => sum + b.amount, 0);
+
+    for (const bet of winningBets) {
+      const payout = totalWinningStake > 0
+        ? (bet.amount / totalWinningStake) * totalPool
+        : 0;
+      await prisma.bet.update({ where: { id: bet.id }, data: { status: "WON", payout } });
+      await prisma.user.update({
+        where: { id: bet.userId },
+        data: { rimcoins: { increment: payout } },
       });
     }
+    await prisma.bet.updateMany({
+      where: { eventId: id, optionId: { not: winnerOptionId } },
+      data: { status: "LOST" },
+    });
   }
 
   return NextResponse.json(event);

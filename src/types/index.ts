@@ -44,17 +44,17 @@ export interface BettingEventData {
   description?: string | null;
   status: "OPEN" | "CLOSED" | "RESOLVED";
   options: BettingOptionData[];
-  totalBets?: number;
+  totalPool: number;
   userBet?: BetData | null;
 }
 
 export interface BettingOptionData {
   id: string;
   label: string;
-  odds: number;
+  impliedOdds: number | null; // null = no bets on this option yet
   isWinner: boolean;
-  betCount?: number;
-  totalAmount?: number;
+  betCount: number;
+  totalAmount: number;
 }
 
 export interface BetData {
