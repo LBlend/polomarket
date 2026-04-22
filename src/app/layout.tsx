@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://polomarket.furumo.eu"),
+  metadataBase: new URL("https://teampolomarket.com"),
   title: "Team Polomarket — Mongol Rally 2026",
   description: "Follow Team Polomarket on the Mongol Rally 2026 — from Oslo to Ulaanbaatar in Tjukk Tuk. Live GPS tracking, rimcoin betting and more.",
   icons: {
