@@ -17,14 +17,14 @@ const TEAM_MEMBERS = [
     name: "Sahib",
     role: "Navigator",
     emoji: "🗺️",
-    bio: "Always knows roughly where we are",
+    bio: "Always knows roughly where we are.",
     gif: "/gifs/sahib.gif",
   },
   {
     name: "Sivert",
     role: "Logistics & Economics",
-    emoji: "🛡️",
-    bio: "Makes sure we have the money to do this in the first place.",
+    emoji: "📦",
+    bio: "Makes sure we have the stuff we need to do this in the first place.",
     gif: "/gifs/sivert.gif",
   },
   {
