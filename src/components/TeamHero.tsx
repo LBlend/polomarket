@@ -134,7 +134,7 @@ export default function TeamHero() {
           >
             THE TEAM
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
             {TEAM_MEMBERS.map((member, i) => (
               <motion.div
                 key={member.name}
