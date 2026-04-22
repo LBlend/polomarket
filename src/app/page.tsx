@@ -1,6 +1,6 @@
 import TeamHero from "@/components/TeamHero";
 import LiveMap from "@/components/LiveMap";
-import InstagramFeed from "@/components/InstagramFeed";
+import SocialLinks from "@/components/SocialLinks";
 import MarketTeaser from "@/components/MarketTeaser";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <TeamHero />
       <LiveMap />
-      <InstagramFeed />
+      <SocialLinks />
       <MarketTeaser />
     </>
   );
