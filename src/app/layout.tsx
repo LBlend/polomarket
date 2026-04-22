@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     title: "Team Polomarket | Mongol Rally 2026",
     description: "Follow 4 fat dudes driving from Oslo to Ulaanbaatar in the Mongol Rally 2026 in their Tjukk Tuk. Live tracking and betting on events, all for charity.",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.png", width: 144, height: 144 }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     images: ["/og-image.png"],
   },
 };
