@@ -139,7 +139,7 @@ export default function InstagramFeed() {
 
         <div className="text-center mt-8">
           <a
-            href="https://instagram.com/polomarket"
+            href="https://instagram.com/teampolomarket"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-rally-border hover:border-pink-600 text-sm text-neutral-400 hover:text-pink-400 transition-all"
