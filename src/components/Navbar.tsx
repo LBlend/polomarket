@@ -30,8 +30,8 @@ export default function Navbar() {
             <Link href="/#map" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
               Map
             </Link>
-            <Link href="/#instagram" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
-              Instagram
+            <Link href="/#socials" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">
+              Socials
             </Link>
             <Link
               href="/market"
@@ -94,7 +94,7 @@ export default function Navbar() {
         <div className="md:hidden bg-rally-card border-t border-rally-border px-4 py-4 space-y-3">
           <Link href="/#team" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Team</Link>
           <Link href="/#map" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Map</Link>
-          <Link href="/#instagram" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Instagram</Link>
+          <Link href="/#socials" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Socials</Link>
           <Link href="/market" onClick={() => setOpen(false)} className="block text-sm text-gold-500 font-semibold py-2">Market</Link>
           <div className="pt-2 border-t border-rally-border">
             {session ? (

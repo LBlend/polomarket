@@ -194,6 +194,15 @@ export default function TeamHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/event-mark.png"
+              alt="The Mongol Rally 2026"
+              width={119}
+              height={150}
+              priority
+            />
+          </div>
           <p className="text-gold-500 text-sm font-semibold tracking-[0.3em] uppercase mb-3">
             Mongol Rally 2026
           </p>
