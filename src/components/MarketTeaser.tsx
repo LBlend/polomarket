@@ -8,17 +8,17 @@ const FEATURES = [
   {
     icon: <Coins size={22} className="text-gold-500" />,
     title: "Rimcoins",
-    desc: "Deposit money and receive our virtual currency. 1 EUR = 100 RC.",
+    desc: "Deposit money and receive our virtual currency.\n1 EUR = 100 RC.",
   },
   {
     icon: <TrendingUp size={22} className="text-indigo-400" />,
     title: "Betting",
-    desc: "Bet on the outcomes of rally events with odds-based payouts.",
+    desc: "Bet on the outcomes of events during the rally.",
   },
   {
     icon: <Heart size={22} className="text-red-400" />,
     title: "All for charity",
-    desc: "100% of winnings and losses are donated to your chosen organisation.",
+    desc: "100% of winnings are donated to the Cool Earth charity.",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function MarketTeaser() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-lg mx-auto">
-            Bet on whether Tjukk Tuk actually makes it to Mongolia, who gives up first, and other crucial rally milestones — with rimcoins that go straight to charity.
+            Bet on whether Tjukk Tuk actually makes it to Mongolia, who gets food poisoning, and things that might happen during the trip.
           </p>
         </motion.div>
 
@@ -59,7 +59,7 @@ export default function MarketTeaser() {
                 {f.icon}
               </div>
               <h3 className="text-lg font-display tracking-wider text-white mb-2">{f.title}</h3>
-              <p className="text-sm text-neutral-500">{f.desc}</p>
+              <p className="text-sm text-neutral-500 whitespace-pre-line">{f.desc}</p>
             </motion.div>
           ))}
         </div>
