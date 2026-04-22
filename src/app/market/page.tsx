@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BettingMarket from "@/components/BettingMarket";
 
 export const metadata: Metadata = {
-  title: "Market - Team Polomarket Mongol Rally",
+  title: "Market | Team Polomarket Mongol Rally",
   description: "Bet on the outcome of Mongol Rally 2026 with rimcoins. All for charity.",
 };
 
