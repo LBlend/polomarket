@@ -350,7 +350,7 @@ export default function BettingMarket() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-xl mx-auto text-sm">
-            Use coins to bet on rally outcomes. Odds shift as bets come in. Winners share the entire pool.
+            Use coins to bet on rally outcomes. Odds shift as bets come in. All winnings go to charity.
           </p>
         </div>
 
@@ -379,7 +379,7 @@ export default function BettingMarket() {
                     disabled
                     className="w-full py-2.5 rounded-xl bg-neutral-800 text-neutral-500 text-sm cursor-not-allowed"
                   >
-                    Deposit — Coming soon
+                    Deposit - Coming soon
                   </button>
                 </>
               ) : (
@@ -405,7 +405,7 @@ export default function BettingMarket() {
             {!session && (
               <div className="bg-rally-card border border-rally-border rounded-2xl p-6 text-center">
                 <p className="text-sm text-neutral-500">
-                  Sign in to choose a charity and place bets with rimcoins.
+                  Sign in to donate and place bets.
                 </p>
               </div>
             )}
