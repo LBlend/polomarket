@@ -25,9 +25,9 @@ const TEAM_MEMBERS = [
 ];
 
 const CAR_SPECS = [
-  { label: "Model", value: "Polo MK2 1.0" },
-  { label: "Horsepower", value: "45 (on a good day)" },
-  { label: "Age", value: "Vintage" },
+  { label: "Model", value: "Volkswagen Polo" },
+  { label: "Horsepower", value: "60 (on a good day)" },
+  { label: "Age", value: "2000 (Vintage)" },
   { label: "Air conditioning", value: "Open the window" },
   { label: "GPS", value: "1994 road atlas" },
   { label: "Spare parts", value: "Plenty of prayers" },
