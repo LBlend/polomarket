@@ -74,8 +74,8 @@ export default function TeamHero() {
           </p>
           <div className="flex items-center justify-center gap-6 mt-6 text-sm text-neutral-500">
             <span className="flex items-center gap-1.5"><Flag size={14} className="text-gold-600" /> ~14,000 km</span>
-            <span className="flex items-center gap-1.5"><Users size={14} className="text-gold-600" /> 3 rallyists</span>
-            <span className="flex items-center gap-1.5"><Wrench size={14} className="text-gold-600" /> 1 questionable car</span>
+            <span className="flex items-center gap-1.5"><Users size={14} className="text-gold-600" /> 4 fat dudes</span>
+            <span className="flex items-center gap-1.5"><Wrench size={14} className="text-gold-600" /> 1 shitbox of a car</span>
           </div>
         </motion.div>
 
