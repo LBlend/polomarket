@@ -1,4 +1,4 @@
-# Polomarket — Mongol Rally 2026
+# Team Polomarket — Mongol Rally 2026
 
 ## Kom i gang
 
@@ -32,7 +32,7 @@ npm run dev
 |---|---|
 | `DATABASE_URL` | SQLite-filsti, f.eks. `file:./dev.db` |
 | `NEXTAUTH_SECRET` | Tilfeldig string, generer med `openssl rand -base64 32` |
-| `NEXTAUTH_URL` | Din URL, f.eks. `https://polomarket.no` |
+| `NEXTAUTH_URL` | Din URL, f.eks. `https://teampolomarket.com` |
 | `GOOGLE_CLIENT_ID` | Fra Google Cloud Console |
 | `GOOGLE_CLIENT_SECRET` | Fra Google Cloud Console |
 | `OWNTRACKS_PASSWORD` | Passord du setter i OwnTracks-appen |

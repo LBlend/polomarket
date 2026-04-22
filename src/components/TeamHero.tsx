@@ -199,7 +199,7 @@ export default function TeamHero() {
             Mongol Rally 2026
           </p>
           <h1 className="text-7xl sm:text-9xl font-display tracking-widest text-white leading-none mb-4">
-            POLOMARKET
+            TEAM POLOMARKET
           </h1>
           <p className="text-neutral-400 text-lg max-w-xl mx-auto">
             From Oslo to Ulaanbaatar in a car that technically shouldn&apos;t make it.

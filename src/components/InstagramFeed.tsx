@@ -59,12 +59,12 @@ export default function InstagramFeed() {
             </h2>
           </div>
           <a
-            href="https://instagram.com/polomarket"
+            href="https://instagram.com/teampolomarket"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
           >
-            <span>@polomarket</span>
+            <span>@teampolomarket</span>
             <ExternalLink size={14} />
           </a>
         </div>

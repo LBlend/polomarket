@@ -18,7 +18,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-2xl font-display tracking-widest text-gold-500 group-hover:text-gold-400 transition-colors">
-              POLOMARKET
+              TEAM POLOMARKET
             </span>
           </Link>
 
