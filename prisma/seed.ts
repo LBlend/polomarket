@@ -55,7 +55,7 @@ async function main() {
       options: [
         { label: "Yes, they make it!", odds: 1.8 },
         { label: "No, they stop along the way", odds: 2.5 },
-        { label: "Partly — last leg by transport", odds: 4.0 },
+        { label: "Partly. Last leg by transport", odds: 4.0 },
       ],
     },
     {

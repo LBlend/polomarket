@@ -8,7 +8,7 @@ const FEATURES = [
   {
     icon: <Coins size={22} className="text-gold-500" />,
     title: "Rimcoins",
-    desc: "Deposit money and receive our virtual currency — 1 EUR = 100 RC.",
+    desc: "Deposit money and receive our virtual currency. 1 EUR = 100 RC.",
   },
   {
     icon: <TrendingUp size={22} className="text-indigo-400" />,

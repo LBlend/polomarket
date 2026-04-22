@@ -125,7 +125,7 @@ function EventCard({
               {event.status === "OPEN" && totalPool > 0 && (
                 <div className="flex items-center gap-2 text-xs text-neutral-600 bg-neutral-900 rounded-xl px-3 py-2">
                   <Info size={12} />
-                  Live odds — payouts shift as more bets are placed.
+                  Live odds! Payouts shift as more bets are placed.
                 </div>
               )}
 
@@ -350,7 +350,7 @@ export default function BettingMarket() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-xl mx-auto text-sm">
-            Use rimcoins to bet on rally outcomes. Odds shift as bets come in — winners share the entire pool.
+            Use coins to bet on rally outcomes. Odds shift as bets come in. Winners share the entire pool.
           </p>
         </div>
 

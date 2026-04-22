@@ -22,7 +22,7 @@ const PLACEHOLDER_POSTS = [
     id: "3",
     media_type: "IMAGE",
     media_url: "https://picsum.photos/seed/polo3/600/600",
-    caption: "Thank you to everyone who has supported us! Rimcoins are live — place your bets now! #mongolrally #rimcoins",
+    caption: "Thank you to everyone who has supported us! Rimcoins are live! Place your bets now! #mongolrally #rimcoins",
     timestamp: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
     permalink: "https://instagram.com",
   },

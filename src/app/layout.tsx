@@ -13,8 +13,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://teampolomarket.com"),
-  title: "Team Polomarket — Mongol Rally 2026",
-  description: "Follow Team Polomarket on the Mongol Rally 2026 — from Oslo to Ulaanbaatar in Tjukk Tuk. Live GPS tracking, rimcoin betting and more.",
+  title: "Team Polomarket - Mongol Rally 2026",
+  description: "Follow 4 fat dudes driving from Oslo to Ulaanbaatar in the Mongol Rally 2026 in their Tjukk Tuk. Live tracking and betting on events, all for charity.",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Team Polomarket — Mongol Rally 2026",
-    description: "Live tracking, rimcoin betting, all for charity.",
+    description: "Follow 4 fat dudes driving from Oslo to Ulaanbaatar in the Mongol Rally 2026 in their Tjukk Tuk. Live tracking and betting on events, all for charity.",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
@@ -50,7 +50,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="fixed top-0 inset-x-0 z-[60] w-full bg-amber-950/80 backdrop-blur-sm border-b border-amber-800/50 text-amber-300 text-xs text-center py-1.5 px-4 tracking-wide">
-            🚧 This site is under development — things may be broken or change without notice.
+            🚧 This site is under development! Things may be broken or change without notice.
           </div>
           <div className="h-7" />
           <Navbar />
@@ -58,7 +58,7 @@ export default function RootLayout({
           <footer className="border-t border-rally-border bg-rally-dark py-10 px-4">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-600">
               <span className="font-display tracking-widest text-gold-700">TEAM POLOMARKET</span>
-              <span>Mongol Rally 2026 — Oslo → Ulaanbaatar</span>
+              <span>Mongol Rally 2026 - Oslo → Ulaanbaatar</span>
               <span>All proceeds to charity</span>
             </div>
           </footer>
