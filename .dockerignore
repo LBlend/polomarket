@@ -3,8 +3,6 @@ node_modules
 out
 build
 .git
-.env
-.env.*
 prisma/*.db
 prisma/*.db-journal
 README.md
