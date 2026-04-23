@@ -1,104 +1,107 @@
 # Team Polomarket — Mongol Rally 2026
 
-## Kom i gang
+## Getting Started
 
-### 1. Installer avhengigheter
+### 1. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. Sett opp miljøvariabler
+### 2. Set up environment variables
 ```bash
 cp .env.example .env
 ```
-Fyll ut `.env` med dine nøkler (se under).
+Fill in `.env` with your values (see below).
 
-### 3. Sett opp databasen
+### 3. Set up the database
 ```bash
-npm run db:push    # Oppretter SQLite-databasen
-npm run db:seed    # Fyller inn veddmål, veldedigheter og rutesteder
+npm run db:push    # Creates the SQLite database
+npm run db:seed    # Seeds bets, charities, and route locations
 ```
 
-### 4. Start utviklingsserveren
+### 4. Start the development server
 ```bash
 npm run dev
 ```
 
 ---
 
-## Miljøvariabler
+## Environment Variables
 
-| Variabel | Beskrivelse |
+| Variable | Description |
 |---|---|
-| `DATABASE_URL` | SQLite-filsti, f.eks. `file:./dev.db` |
-| `NEXTAUTH_SECRET` | Tilfeldig string, generer med `openssl rand -base64 32` |
-| `NEXTAUTH_URL` | Din URL, f.eks. `https://teampolomarket.com` |
-| `GOOGLE_CLIENT_ID` | Fra Google Cloud Console |
-| `GOOGLE_CLIENT_SECRET` | Fra Google Cloud Console |
-| `OWNTRACKS_PASSWORD` | Passord du setter i OwnTracks-appen |
-| `INSTAGRAM_ACCESS_TOKEN` | Valgfritt — viser placeholder-poster uten denne |
+| `DATABASE_URL` | SQLite file path, e.g. `file:./dev.db` |
+| `NEXTAUTH_SECRET` | Random string — generate with `openssl rand -base64 32` |
+| `NEXTAUTH_URL` | Your URL, e.g. `https://teampolomarket.com` |
+| `GOOGLE_CLIENT_ID` | From Google Cloud Console |
+| `GOOGLE_CLIENT_SECRET` | From Google Cloud Console |
+| `OWNTRACKS_PASSWORD` | Password you set in the OwnTracks app |
+| `RIMCOIN_RATE` | Exchange rate: 1 EUR = X rimcoins (default: `100`) |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Umami analytics site ID |
+| `NEXT_PUBLIC_UMAMI_SRC` | Umami script URL |
 
-### Google OAuth oppsett
-1. Gå til [Google Cloud Console](https://console.cloud.google.com/)
-2. Lag et nytt prosjekt
-3. Aktiver **Google+ API** og **Google Identity**
-4. Opprett OAuth 2.0-legitimasjon
-5. Legg til `http://localhost:3000/api/auth/callback/google` som tillatt redirect-URI
-
----
-
-## OwnTracks-oppsett
-
-I OwnTracks-appen (iOS/Android):
-- **Modus:** HTTP
-- **URL:** `https://polomarket.no/api/owntracks`
-- **Passord:** Det du satte i `OWNTRACKS_PASSWORD`
-- **Bruker:** hva som helst (ignoreres)
-
-Appen sender automatisk posisjonsoppdateringer til endepunktet.
+### Google OAuth setup
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Enable **Google+ API** and **Google Identity**
+4. Create OAuth 2.0 credentials
+5. Add `http://localhost:3000/api/auth/callback/google` as an allowed redirect URI
 
 ---
 
-## Instagram-feed
+## OwnTracks Setup
 
-Uten `INSTAGRAM_ACCESS_TOKEN` vises placeholder-poster automatisk.
+In the OwnTracks app (iOS/Android):
+- **Mode:** HTTP
+- **URL:** `https://teampolomarket.com/api/owntracks`
+- **Password:** The value you set in `OWNTRACKS_PASSWORD`
+- **Username:** anything (ignored)
 
-For å koble til ekte Instagram:
-1. Opprett en [Meta Developer App](https://developers.facebook.com/)
-2. Aktiver **Instagram Basic Display API**
-3. Generer et access token
-4. Sett `INSTAGRAM_ACCESS_TOKEN=...` i `.env`
+The app will automatically send location updates to the endpoint.
 
 ---
 
-## Sideoversikt
+## Pages
 
-| Side | Rute | Beskrivelse |
+| Page | Route | Description |
 |---|---|---|
-| Forsiden | `/` | Lag, kart, Instagram, markedsteaser |
-| Markedet | `/market` | Veddemål med rimcoins + veldedighetsvalg |
+| Home | `/` | Team intro, live GPS map, Twitch stream, social links, market teaser |
+| Market | `/market` | Parimutuel betting with rimcoins + charity selection |
 
 ---
 
-## Admin-funksjonalitet
+## Admin
 
-Merk en bruker som admin i databasen:
+Mark a user as admin in the database:
 ```bash
 npm run db:studio
-# Finn brukeren → sett isAdmin = true
+# Find the user → set isAdmin = true
 ```
 
-Som admin kan du:
-- Legge til/endre/slette rutesteder på kartet
-- Opprette og løse veddemålshendelser via API
+As admin you can:
+- Add / edit / delete route waypoints on the map
+- Create and resolve betting events via the API
 
 ---
 
-## Teknisk stack
+## Docker
+
+A Docker Compose setup is included for self-hosting. The database is persisted on a named volume (`db_data`) at `/data/prod.db` inside the container.
+
+```bash
+docker compose up -d
+```
+
+The app is exposed on port `1945`.
+
+---
+
+## Tech Stack
 
 - **Next.js 15** App Router
-- **Prisma** + SQLite (produksjon: bytt til PostgreSQL)
-- **NextAuth v4** med Google OAuth
-- **React Leaflet** for live kart
-- **Framer Motion** for animasjoner
+- **Prisma** + SQLite (switch to PostgreSQL for production scale)
+- **NextAuth v4** with Google OAuth
+- **React Leaflet** for the live map
+- **Framer Motion** for animations
 - **Tailwind CSS**
+- **Umami** for privacy-friendly analytics
