@@ -2,7 +2,7 @@
 set -e
 
 # Apply any pending schema changes
-node node_modules/prisma/build/index.js db push --skip-generate
+node node_modules/prisma/build/index.js db push --skip-generate --accept-data-loss
 
 # Seed reference data (charities, events, waypoints).
 # The seed script is idempotent — safe to run on every start.
