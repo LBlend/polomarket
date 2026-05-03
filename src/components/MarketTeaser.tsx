@@ -41,7 +41,7 @@ export default function MarketTeaser() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-lg mx-auto">
-            Bet on whether Tjukk Tuk actually makes it to Mongolia, who gets food poisoning, and things that might happen during the trip.
+            Bet on whether Tjukk Tuk actually makes it to <s>Mongolia</s> Oskemen, who gets food poisoning, and things that might happen during the trip.
           </p>
         </motion.div>
 

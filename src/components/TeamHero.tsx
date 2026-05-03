@@ -210,7 +210,7 @@ export default function TeamHero() {
             TEAM POLOMARKET
           </h1>
           <p className="text-neutral-400 text-lg max-w-xl mx-auto">
-            From Oslo to Ulaanbaatar in a car that technically shouldn&apos;t make it.
+            From Oslo to <s>Ulaanbaatar</s> Oskemen in a car that technically shouldn&apos;t make it.
           </p>
           <div className="flex items-center justify-center gap-6 mt-6 text-sm text-neutral-500">
             <span className="flex items-center gap-1.5"><Flag size={14} className="text-gold-600" /> ~14,000 km</span>
