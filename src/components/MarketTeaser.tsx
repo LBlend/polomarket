@@ -2,23 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Coins, TrendingUp, Heart, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, TrendingUp, Heart } from "lucide-react";
+
+const SPLEIS_URL = "https://www.spleis.no/project/494404";
 
 const FEATURES = [
   {
-    icon: <Coins size={22} className="text-gold-500" />,
-    title: "Rimcoins",
-    desc: "Deposit money and receive our virtual currency.\n1 EUR = 100 RC.",
-  },
-  {
-    icon: <TrendingUp size={22} className="text-indigo-400" />,
-    title: "Betting",
-    desc: "Bet on the outcomes of events during the rally.",
+    icon: <TrendingUp size={22} className="text-gold-500" />,
+    title: "Predict & Vote",
+    desc: "Donate to place bets on what happens during the rally. Who crashes first? Who gets food poisoning?",
   },
   {
     icon: <Heart size={22} className="text-red-400" />,
     title: "All for charity",
-    desc: "100% of winnings are donated to the Cool Earth charity.",
+    desc: "All the money donated goes toward covering rally costs and donated to Cool Earth.",
   },
 ];
 
@@ -41,11 +38,12 @@ export default function MarketTeaser() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-lg mx-auto">
-            Bet on whether Tjukk Tuk actually makes it to <s>Mongolia</s> Oskemen, who gets food poisoning, and things that might happen during the trip.
+            Bet on whether Tjukk Tuk actually makes it to <s>Mongolia</s> Oskemen, who gets food
+            poisoning, and things that might happen during the trip.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto">
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
@@ -59,19 +57,28 @@ export default function MarketTeaser() {
                 {f.icon}
               </div>
               <h3 className="text-lg font-display tracking-wider text-white mb-2">{f.title}</h3>
-              <p className="text-sm text-neutral-500 whitespace-pre-line">{f.desc}</p>
+              <p className="text-sm text-neutral-500">{f.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/market"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gold-600 hover:bg-gold-500 text-black font-bold text-base rounded-full transition-colors group"
           >
-            Go to the Market
+            View Predictions
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
+          <a
+            href={SPLEIS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-rally-border hover:border-gold-600 text-neutral-300 hover:text-white font-semibold text-base rounded-full transition-all"
+          >
+            Donate &amp; Vote on Spleis
+            <ExternalLink size={16} />
+          </a>
         </div>
       </div>
     </section>

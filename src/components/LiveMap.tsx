@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { useSession } from "next-auth/react";
 import { MapPin, RefreshCw, Clock, Zap } from "lucide-react";
 import type { LocationPoint, WaypointData } from "@/types";
 
@@ -21,7 +20,6 @@ const MapInner = dynamic(() => import("./MapInner"), {
 const REFRESH_INTERVAL = 60_000;
 
 export default function LiveMap() {
-  const { data: session } = useSession();
   const [locations, setLocations] = useState<LocationPoint[]>([]);
   const [waypoints, setWaypoints] = useState<WaypointData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -156,7 +154,7 @@ export default function LiveMap() {
             <MapInner
               locations={locations}
               waypoints={waypoints}
-              isAdmin={session?.user?.isAdmin}
+              isAdmin={false}
               onAddWaypoint={handleAddWaypoint}
             />
           )}

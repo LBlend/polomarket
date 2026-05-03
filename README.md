@@ -16,7 +16,7 @@ Fill in `.env` with your values (see below).
 ### 3. Set up the database
 ```bash
 npm run db:push    # Creates the SQLite database
-npm run db:seed    # Seeds bets, charities, and route locations
+npm run db:seed    # Seeds route waypoints
 ```
 
 ### 4. Start the development server
@@ -31,21 +31,9 @@ npm run dev
 | Variable | Description |
 |---|---|
 | `DATABASE_URL` | SQLite file path, e.g. `file:./dev.db` |
-| `NEXTAUTH_SECRET` | Random string — generate with `openssl rand -base64 32` |
-| `NEXTAUTH_URL` | Your URL, e.g. `https://teampolomarket.com` |
-| `GOOGLE_CLIENT_ID` | From Google Cloud Console |
-| `GOOGLE_CLIENT_SECRET` | From Google Cloud Console |
 | `OWNTRACKS_PASSWORD` | Password you set in the OwnTracks app |
-| `RIMCOIN_RATE` | Exchange rate: 1 EUR = X rimcoins (default: `100`) |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Umami analytics site ID |
 | `NEXT_PUBLIC_UMAMI_SRC` | Umami script URL |
-
-### Google OAuth setup
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project
-3. Enable **Google+ API** and **Google Identity**
-4. Create OAuth 2.0 credentials
-5. Add `http://localhost:3000/api/auth/callback/google` as an allowed redirect URI
 
 ---
 
@@ -66,21 +54,9 @@ The app will automatically send location updates to the endpoint.
 | Page | Route | Description |
 |---|---|---|
 | Home | `/` | Team intro, live GPS map, Twitch stream, social links, market teaser |
-| Market | `/market` | Parimutuel betting with rimcoins + charity selection |
+| Market | `/market` | Live fundraising progress, prediction poll results, and donor leaderboard (data from Spleis) |
 
----
-
-## Admin
-
-Mark a user as admin in the database:
-```bash
-npm run db:studio
-# Find the user → set isAdmin = true
-```
-
-As admin you can:
-- Add / edit / delete route waypoints on the map
-- Create and resolve betting events via the API
+Betting and voting happen on [Spleis](https://www.spleis.no/project/494404). The `/market` page displays live stats fetched from the public Spleis API (revalidated every 60 seconds).
 
 ---
 
@@ -99,8 +75,7 @@ The app is exposed on port `1945`.
 ## Tech Stack
 
 - **Next.js 15** App Router
-- **Prisma** + SQLite (switch to PostgreSQL for production scale)
-- **NextAuth v4** with Google OAuth
+- **Prisma** + SQLite
 - **React Leaflet** for the live map
 - **Framer Motion** for animations
 - **Tailwind CSS**
