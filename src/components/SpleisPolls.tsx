@@ -60,7 +60,7 @@ export default async function SpleisPolls() {
                       <span className="text-neutral-500 tabular-nums">
                         {opt.vote_count} vote{opt.vote_count !== 1 ? "s" : ""}
                         {poll.count_collected_amount && opt.collected_amount > 0
-                          ? ` · ${opt.collected_amount.toLocaleString("nb-NO")} kr`
+                          ? ` · ${opt.collected_amount.toLocaleString("nb-NO", { maximumFractionDigits: 0 })} kr`
                           : ""}
                       </span>
                     </div>

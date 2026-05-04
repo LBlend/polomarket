@@ -52,7 +52,7 @@ export default async function SpleisLeaderboard() {
           </span>
           {giver.amount != null && (
             <span className="text-gold-400 font-mono font-semibold text-sm tabular-nums shrink-0">
-              {giver.amount.toLocaleString("nb-NO")} kr
+              {giver.amount.toLocaleString("nb-NO", { maximumFractionDigits: 0 })} kr
             </span>
           )}
         </div>

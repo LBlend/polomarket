@@ -65,7 +65,7 @@ export default async function MarketPage() {
               {donors.toLocaleString("nb-NO")} donor{donors !== 1 ? "s" : ""}
             </span>
             <span className="text-white font-semibold tabular-nums">
-              {raised.toLocaleString("nb-NO")} / {GOAL_KR.toLocaleString("nb-NO")} kr
+              {raised.toLocaleString("nb-NO", { maximumFractionDigits: 0 })} / {GOAL_KR.toLocaleString("nb-NO")} kr
             </span>
           </div>
           <div className="h-3 bg-neutral-800 rounded-full overflow-hidden">
