@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ExternalLink, Users, TrendingUp } from "lucide-react";
 import SpleisPolls from "@/components/SpleisPolls";
-import SpleisLeaderboard from "@/components/SpleisLeaderboard";
 
 const SPLEIS_URL = "https://www.spleis.no/project/494404";
 const GOAL_KR = 49999;
@@ -79,26 +78,15 @@ export default async function MarketPage() {
           )}
         </div>
 
-        {/* Predictions + Leaderboard */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <h2 className="text-xl font-display tracking-wider text-white mb-5 flex items-center gap-2">
-              <TrendingUp size={18} className="text-gold-500" />
-              Predictions
-            </h2>
-            <Suspense fallback={<PollsSkeleton />}>
-              <SpleisPolls />
-            </Suspense>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-display tracking-wider text-white mb-5">
-              🏆 Leaderboard
-            </h2>
-            <Suspense fallback={<LeaderboardSkeleton />}>
-              <SpleisLeaderboard />
-            </Suspense>
-          </div>
+        {/* Predictions */}
+        <div>
+          <h2 className="text-xl font-display tracking-wider text-white mb-5 flex items-center gap-2">
+            <TrendingUp size={18} className="text-gold-500" />
+            Predictions
+          </h2>
+          <Suspense fallback={<PollsSkeleton />}>
+            <SpleisPolls />
+          </Suspense>
         </div>
       </div>
     </div>
@@ -115,16 +103,6 @@ function PollsSkeleton() {
             {[0, 1, 2].map((j) => <div key={j} className="h-8 bg-neutral-800 rounded" />)}
           </div>
         </div>
-      ))}
-    </div>
-  );
-}
-
-function LeaderboardSkeleton() {
-  return (
-    <div className="bg-rally-card border border-rally-border rounded-2xl overflow-hidden animate-pulse">
-      {[0, 1, 2, 3].map((i) => (
-        <div key={i} className="h-14 border-b border-rally-border bg-neutral-800/20" />
       ))}
     </div>
   );

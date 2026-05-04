@@ -24,15 +24,28 @@ async function fetchLeaderboard(): Promise<Giver[]> {
 const MEDALS = ["🥇", "🥈", "🥉"];
 const MEDAL_COLORS = ["text-yellow-400", "text-neutral-400", "text-amber-600"];
 
-export default async function SpleisLeaderboard() {
+export default async function SpleisLeaderboard({ giverCount = 0 }: { giverCount?: number }) {
   const givers = await fetchLeaderboard();
 
   if (!givers.length) {
     return (
       <div className="bg-rally-card border border-rally-border rounded-2xl p-8 text-center">
         <p className="text-2xl mb-3">🏆</p>
-        <p className="text-neutral-300 font-semibold mb-1">No donors yet</p>
-        <p className="text-sm text-neutral-600">Be the first to top the leaderboard!</p>
+        {giverCount > 0 ? (
+          <>
+            <p className="text-neutral-300 font-semibold mb-1">
+              {giverCount} donor{giverCount !== 1 ? "s" : ""} so far
+            </p>
+            <p className="text-sm text-neutral-600">
+              All giving anonymously — opt in when donating on Spleis to appear here!
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="text-neutral-300 font-semibold mb-1">No donors yet</p>
+            <p className="text-sm text-neutral-600">Be the first to top the leaderboard!</p>
+          </>
+        )}
       </div>
     );
   }
