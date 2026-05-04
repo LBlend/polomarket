@@ -95,7 +95,7 @@ export default async function MarketPage() {
 
 function PollsSkeleton() {
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {[0, 1, 2].map((i) => (
         <div key={i} className="bg-rally-card border border-rally-border rounded-2xl p-6 animate-pulse">
           <div className="h-5 bg-neutral-800 rounded w-3/4 mb-5" />

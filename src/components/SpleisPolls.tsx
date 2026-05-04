@@ -36,7 +36,7 @@ export default async function SpleisPolls() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {polls.map((poll) => {
         const total = poll.options.reduce((s, o) => s + o.vote_count, 0);
         const leading = poll.options.reduce(
