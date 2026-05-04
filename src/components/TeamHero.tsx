@@ -9,28 +9,28 @@ const TEAM_MEMBERS = [
   {
     name: "Sebastian",
     role: "Engineer",
-    emoji: "🔧",
+    photo: "/sebastian.jpg",
     bio: "Responsible for making sure our Tjukk Tuk actually starts.",
     gif: "/gifs/sebastian.gif",
   },
   {
     name: "Sahib",
     role: "Navigator",
-    emoji: "🗺️",
+    photo: "/sahib.jpg",
     bio: "Always knows roughly where we are.",
     gif: "/gifs/sahib.gif",
   },
   {
     name: "Sivert",
     role: "Logistics & Economics",
-    emoji: "📦",
+    photo: "/sivert.jpg",
     bio: "Makes sure we have the stuff we need to do this in the first place.",
     gif: "/gifs/sivert.gif",
   },
   {
     name: "Leander",
     role: "Social Media & Documentarian",
-    emoji: "📸",
+    photo: "/leander.jpg",
     bio: "Always has a camera in hand, documenting our journey and making sure the world knows about our questionable decisions.",
     gif: "/gifs/leander.gif",
   },
@@ -85,14 +85,19 @@ function TeamCard({ member, index }: { member: (typeof TEAM_MEMBERS)[0]; index: 
           <AnimatePresence>
             {!hovered && (
               <motion.div
-                key="emoji"
-                className="text-7xl absolute inset-0 flex items-center justify-center"
+                key="photo"
+                className="absolute inset-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {member.emoji}
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -122,14 +127,19 @@ function TeamCard({ member, index }: { member: (typeof TEAM_MEMBERS)[0]; index: 
           <AnimatePresence>
             {hovered && !member.gif && (
               <motion.div
-                key="emoji-hovered"
-                className="text-7xl absolute inset-0 flex items-center justify-center bg-neutral-800"
+                key="photo-hovered"
+                className="absolute inset-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {member.emoji}
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
               </motion.div>
             )}
           </AnimatePresence>
