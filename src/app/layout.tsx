@@ -49,10 +49,6 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <div className="fixed top-0 inset-x-0 z-[60] w-full bg-amber-950/80 backdrop-blur-sm border-b border-amber-800/50 text-amber-300 text-xs text-center py-1.5 px-4 tracking-wide">
-            🚧 This site is under development! Things may be broken or change without notice.
-          </div>
-          <div className="h-7" />
           <Navbar />
           <main>{children}</main>
           <footer className="border-t border-rally-border bg-rally-dark py-10 px-4">
