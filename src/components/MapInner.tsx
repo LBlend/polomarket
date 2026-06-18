@@ -14,9 +14,11 @@ import "leaflet/dist/leaflet.css";
 import type { LocationPoint, WaypointData } from "@/types";
 import { Battery, Gauge, Navigation } from "lucide-react";
 
-delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
+delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)
+  ._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
@@ -73,13 +75,17 @@ export default function MapInner({
   onAddWaypoint,
 }: MapInnerProps) {
   const trackPoints: [number, number][] = locations.map((l) => [l.lat, l.lng]);
-  const waypointPoints: [number, number][] = waypoints.map((w) => [w.lat, w.lng]);
+  const waypointPoints: [number, number][] = waypoints.map((w) => [
+    w.lat,
+    w.lng,
+  ]);
   const allPoints = [...trackPoints, ...waypointPoints];
 
   const latest = locations[locations.length - 1];
 
-  const defaultCenter: [number, number] =
-    latest ? [latest.lat, latest.lng] : [59.9139, 10.7522];
+  const defaultCenter: [number, number] = latest
+    ? [latest.lat, latest.lng]
+    : [59.9139, 10.7522];
 
   const [addingWaypoint, setAddingWaypoint] = useState(false);
 
@@ -93,7 +99,9 @@ export default function MapInner({
         setAddingWaypoint(false);
       };
       map.on("click", handler);
-      return () => { map.off("click", handler); };
+      return () => {
+        map.off("click", handler);
+      };
     }, [map]);
 
     return null;
@@ -128,7 +136,9 @@ export default function MapInner({
           <Polyline
             positions={[
               [latest.lat, latest.lng],
-              ...waypoints.filter((w) => !w.visited).map((w): [number, number] => [w.lat, w.lng]),
+              ...waypoints
+                .filter((w) => !w.visited)
+                .map((w): [number, number] => [w.lat, w.lng]),
             ]}
             pathOptions={{
               color: "#6366f1",
@@ -141,7 +151,10 @@ export default function MapInner({
 
         {/* Current location marker */}
         {latest && (
-          <Marker position={[latest.lat, latest.lng]} icon={currentLocationIcon}>
+          <Marker
+            position={[latest.lat, latest.lng]}
+            icon={currentLocationIcon}
+          >
             <Popup className="dark-popup">
               <div className="text-sm font-sans space-y-1 min-w-[160px]">
                 <p className="font-bold text-amber-500">Tjukk Tuk</p>
@@ -180,7 +193,9 @@ export default function MapInner({
                 {wp.description && (
                   <p className="text-neutral-500 text-xs">{wp.description}</p>
                 )}
-                <p className={`text-xs font-semibold ${wp.visited ? "text-green-500" : "text-indigo-400"}`}>
+                <p
+                  className={`text-xs font-semibold ${wp.visited ? "text-green-500" : "text-indigo-400"}`}
+                >
                   {wp.visited ? "Visited" : "Planned"}
                 </p>
               </div>
@@ -208,11 +223,17 @@ export default function MapInner({
       {/* Legend */}
       <div className="absolute top-4 left-4 z-[1000] bg-neutral-900/90 backdrop-blur-sm border border-rally-border rounded-xl p-3 text-xs space-y-1.5">
         <div className="flex items-center gap-2">
-          <span className="w-8 h-0.5 bg-amber-500 block rounded" />
+          <span
+            className="w-8 h-0.5 block rounded"
+            style={{ background: "#1e8a6e" }}
+          />
           <span className="text-neutral-400">Driven</span>
-        </div>
+        </div>{" "}
         <div className="flex items-center gap-2">
-          <span className="w-8 h-0.5 bg-indigo-400 block rounded" style={{ borderTop: "2px dashed #6366f1", background: "none" }} />
+          <span
+            className="w-8 h-0.5 bg-indigo-400 block rounded"
+            style={{ borderTop: "2px dashed #6366f1", background: "none" }}
+          />
           <span className="text-neutral-400">Planned</span>
         </div>
         <div className="flex items-center gap-2">
