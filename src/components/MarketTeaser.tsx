@@ -14,8 +14,8 @@ const FEATURES = [
   },
   {
     icon: <Heart size={22} className="text-red-400" />,
-    title: "All for charity",
-    desc: "All the money donated goes toward covering rally costs and donated to Cool Earth.",
+    title: "For charity",
+    desc: "All the money donated goes toward covering rally costs and to the Cool Earth foundation.",
   },
 ];
 
@@ -38,8 +38,9 @@ export default function MarketTeaser() {
             THE MARKET
           </h2>
           <p className="text-neutral-400 max-w-lg mx-auto">
-            Bet on whether Tjukk Tuk actually makes it to <s>Mongolia</s> Oskemen, who gets food
-            poisoning, and things that might happen during the trip.
+            Bet on whether Tjukk Tuk actually makes it to <s>Mongolia</s>{" "}
+            Oskemen, who gets food poisoning, and things that might happen
+            during the trip.
           </p>
         </motion.div>
 
@@ -56,7 +57,9 @@ export default function MarketTeaser() {
               <div className="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center mx-auto mb-4">
                 {f.icon}
               </div>
-              <h3 className="text-lg font-display tracking-wider text-white mb-2">{f.title}</h3>
+              <h3 className="text-lg font-display tracking-wider text-white mb-2">
+                {f.title}
+              </h3>
               <p className="text-sm text-neutral-500">{f.desc}</p>
             </motion.div>
           ))}
@@ -68,7 +71,10 @@ export default function MarketTeaser() {
             className="inline-flex items-center gap-3 px-8 py-4 bg-gold-600 hover:bg-gold-500 text-black font-bold text-base rounded-full transition-colors group"
           >
             View Predictions
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight
+              size={18}
+              className="group-hover:translate-x-1 transition-transform"
+            />
           </Link>
           <a
             href={SPLEIS_URL}
