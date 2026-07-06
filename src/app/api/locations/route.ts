@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const limit = Math.min(Number(searchParams.get("limit") ?? 2000), 5000);
+  const limit = 1000000;
   const since = searchParams.get("since");
 
   const locations = await prisma.location.findMany({
