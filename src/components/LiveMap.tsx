@@ -29,7 +29,7 @@ export default function LiveMap() {
 
   const fetchData = useCallback(async () => {
     const [locRes, wpRes] = await Promise.all([
-      fetch("/api/locations?limit=2000"),
+      fetch("/api/locations"),
       fetch("/api/waypoints"),
     ]);
     if (locRes.ok) setLocations(await locRes.json());
