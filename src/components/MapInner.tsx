@@ -140,7 +140,7 @@ export default function MapInner({
           >
             <Popup className="dark-popup">
               <div className="text-sm font-sans space-y-1 min-w-[160px]">
-                <p className="font-bold text-amber-500">Tjukk Tuk</p>
+                <p className="font-bold text-green-500">Tjukk Tuk</p>
                 <p className="text-neutral-400 text-xs">
                   {new Date(latest.timestamp).toLocaleString("en-GB")}
                 </p>
@@ -211,7 +211,7 @@ export default function MapInner({
           <span className="text-neutral-400">Driven</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-amber-500 block" />
+          <span className="w-3 h-3 rounded-full bg-green-500 block" />
           <span className="text-neutral-400">Current</span>
         </div>
         <div className="flex items-center gap-2">
