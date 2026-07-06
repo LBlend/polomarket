@@ -75,11 +75,12 @@ export default function MapInner({
   onAddWaypoint,
 }: MapInnerProps) {
   const trackPoints: [number, number][] = locations.map((l) => [l.lat, l.lng]);
-  const waypointPoints: [number, number][] = waypoints.map((w) => [
+  const plannedWaypoints = waypoints.filter((w) => !w.visited);
+  const plannedWaypointPoints: [number, number][] = plannedWaypoints.map((w) => [
     w.lat,
     w.lng,
   ]);
-  const allPoints = [...trackPoints, ...waypointPoints];
+  const allPoints = [...trackPoints, ...plannedWaypointPoints];
 
   const latest = locations[locations.length - 1];
 
@@ -131,24 +132,6 @@ export default function MapInner({
           />
         )}
 
-        {/* Planned future route */}
-        {latest && waypoints.length > 0 && (
-          <Polyline
-            positions={[
-              [latest.lat, latest.lng],
-              ...waypoints
-                .filter((w) => !w.visited)
-                .map((w): [number, number] => [w.lat, w.lng]),
-            ]}
-            pathOptions={{
-              color: "#6366f1",
-              weight: 2,
-              opacity: 0.6,
-              dashArray: "6 6",
-            }}
-          />
-        )}
-
         {/* Current location marker */}
         {latest && (
           <Marker
@@ -180,12 +163,12 @@ export default function MapInner({
           </Marker>
         )}
 
-        {/* Waypoint markers */}
-        {waypoints.map((wp) => (
+        {/* Planned waypoint markers only */}
+        {plannedWaypoints.map((wp) => (
           <Marker
             key={wp.id}
             position={[wp.lat, wp.lng]}
-            icon={waypointIcon(wp.visited)}
+            icon={waypointIcon(false)}
           >
             <Popup>
               <div className="text-sm font-sans space-y-1">
@@ -193,10 +176,8 @@ export default function MapInner({
                 {wp.description && (
                   <p className="text-neutral-500 text-xs">{wp.description}</p>
                 )}
-                <p
-                  className={`text-xs font-semibold ${wp.visited ? "text-green-500" : "text-indigo-400"}`}
-                >
-                  {wp.visited ? "Visited" : "Planned"}
+                <p className="text-xs font-semibold text-indigo-400">
+                  Planned
                 </p>
               </div>
             </Popup>
@@ -228,13 +209,6 @@ export default function MapInner({
             style={{ background: "#1e8a6e" }}
           />
           <span className="text-neutral-400">Driven</span>
-        </div>{" "}
-        <div className="flex items-center gap-2">
-          <span
-            className="w-8 h-0.5 bg-indigo-400 block rounded"
-            style={{ borderTop: "2px dashed #6366f1", background: "none" }}
-          />
-          <span className="text-neutral-400">Planned</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-amber-500 block" />
@@ -242,7 +216,7 @@ export default function MapInner({
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-indigo-400 block" />
-          <span className="text-neutral-400">Stop</span>
+          <span className="text-neutral-400">Planned stop</span>
         </div>
       </div>
 
