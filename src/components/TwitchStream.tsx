@@ -3,15 +3,15 @@
 import { useEffect, useRef } from "react";
 import { Tv } from "lucide-react";
 
-const CHANNEL = "furumolive";
+const YOUTUBE_CHANNEL_ID = "UCCFu-g7ePfbAD3qFpEGR3_g";
 
 export default function TwitchStream() {
   const ref = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (ref.current) {
-      const parent = window.location.hostname;
-      ref.current.src = `https://player.twitch.tv/?channel=${CHANNEL}&parent=${parent}&autoplay=false`;
+      // YouTube embed for channel livestreams
+      ref.current.src = `https://www.youtube.com/embed/live/${YOUTUBE_CHANNEL_ID}?autoplay=0`;
     }
   }, []);
 
