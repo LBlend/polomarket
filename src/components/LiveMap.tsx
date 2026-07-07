@@ -108,7 +108,7 @@ export default function LiveMap() {
         </div>
 
         {/* Stats bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
           {[
             {
               icon: <MapPin size={16} className="text-gold-500" />,
@@ -119,11 +119,6 @@ export default function LiveMap() {
               icon: <Clock size={16} className="text-indigo-400" />,
               label: "Planned stops",
               value: waypoints.filter((w) => !w.visited).length,
-            },
-            {
-              icon: <MapPin size={16} className="text-green-500" />,
-              label: "Visited stops",
-              value: waypoints.filter((w) => w.visited).length,
             },
             {
               icon: <Zap size={16} className="text-amber-400" />,
