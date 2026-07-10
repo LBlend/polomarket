@@ -1,5 +1,3 @@
-"use server";
-
 import fuelEntries from "@/data/fuel-entries.json";
 
 type FuelEntry = {
@@ -65,6 +63,5 @@ export default function FuelTracker() {
 }
 
 function formatLocation(coords: { lat: number; lng: number }) {
-  // short coords display — change formatting if you prefer
   return `${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}`;
 }
