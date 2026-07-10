@@ -1,9 +1,58 @@
 [
   {
-    "date": "2026-07-01T15:23:00Z",
-    "litersCl": 4270,
-    "coords": { "lat": 59.9139, "lng": 10.7522 },
-    "pricePerLEurCents": 2179,
-    "place": "Oslo"
+    "date": "2026-07-05T21:49:00+02:00",
+    "litersCl": 3436,
+    "coords": { "lat": 58.4875, "lng": 11.6275 },
+    "pricePerLEurCents": 135,
+    "place": "Håby, Sweden"
+  },
+  {
+    "date": "2026-07-06T02:12:00+02:00",
+    "litersCl": 3304,
+    "coords": { "lat": 55.5561, "lng": 12.9524 },
+    "pricePerLEurCents": 130,
+    "place": "Malmö, Sweden"
+  },
+  {
+    "date": "2026-07-06T20:48:00+02:00",
+    "litersCl": 3504,
+    "coords": { "lat": 54.3642, "lng": 9.6709 },
+    "pricePerLEurCents": 254.9,
+    "place": "Alt Duvenstedt, Germany"
+  },
+  {
+    "date": "2026-07-07T18:46:00+02:00",
+    "litersCl": 3301,
+    "coords": { "lat": 54.3642, "lng": 9.6709 },
+    "pricePerLEurCents": 208.9,
+    "place": "Stadtallendorf, Germany"
+  },
+  {
+    "date": "2026-07-08T20:08:00+02:00",
+    "litersCl": 3922,
+    "coords": { "lat": 47.9085, "lng": 8.1084 },
+    "pricePerLEurCents": 205.9,
+    "place": "Hinterzarten, Germany"
+  },
+  {
+    "date": "2026-07-10T09:42:00+02:00",
+    "litersCl": 2660,
+    "coords": { "lat": 47.9085, "lng": 8.1084 },
+    "pricePerLEurCents": 187.9,
+    "place": "Vicenza, Italy"
+  },
+  {
+    "date": "2026-07-10T15:23:00+02:00",
+    "litersCl": 1776,
+    "coords": { "lat": 46.5701, "lng": 13.6952 },
+    "pricePerLEurCents": 204.9,
+    "place": "Gailitz, Austria"
+  },
+  {
+    "date": "2026-07-10T20:19:00+02:00",
+    "litersCl": 2650,
+    "coords": { "lat": 48.3596, "lng": 14.4823 },
+    "pricePerLEurCents": 177.4,
+    "place": "Unterweitersdorf, Austria"
   }
 ]
