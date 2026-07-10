@@ -1,0 +1,9 @@
+[
+  {
+    "date": "2026-07-01T15:23:00Z",
+    "liters": 42.7,
+    "coords": { "lat": 59.9139, "lng": 10.7522 },
+    "pricePerL": 21.79,
+    "notes": "Filled up before leaving Oslo"
+  }
+]
