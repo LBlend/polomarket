@@ -20,6 +20,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link href="/#team" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">Team</Link>
             <Link href="/#map" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">Map</Link>
+            <Link href="/#fuel" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">Fuel</Link>
             <Link href="/#socials" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">Socials</Link>
             <Link href="/#stream" className="text-sm text-neutral-300 hover:text-gold-400 transition-colors tracking-wide">Livestream</Link>
             <Link
@@ -44,6 +45,7 @@ export default function Navbar() {
         <div className="md:hidden bg-rally-card border-t border-rally-border px-4 py-4 space-y-3">
           <Link href="/#team" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Team</Link>
           <Link href="/#map" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Map</Link>
+          <Link href="/#fuel" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Fuel</Link>
           <Link href="/#socials" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Socials</Link>
           <Link href="/#stream" onClick={() => setOpen(false)} className="block text-sm text-neutral-300 hover:text-gold-400 py-2">Livestream</Link>
           <Link href="/market" onClick={() => setOpen(false)} className="block text-sm text-gold-500 font-semibold py-2">Market</Link>
