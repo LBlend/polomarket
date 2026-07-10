@@ -80,6 +80,9 @@ export default function FuelTracker() {
               const costEuros = typeof e.pricePerLEurCents === "number"
                 ? (e.pricePerLEurCents * (Number(e.litersCl) || 0)) / 100 / 100
                 : null;
+              const pricePerLiter = typeof e.pricePerLEurCents === "number"
+                ? e.pricePerLEurCents / 100
+                : null;
 
               return (
                 <div key={i} className="py-4 flex items-start justify-between gap-4">
@@ -99,13 +102,13 @@ export default function FuelTracker() {
 
                   <div className="text-right">
                     <div className="font-semibold text-white tabular-nums">{liters.toFixed(1)} L</div>
-                    {costEuros !== null ? (
+                    {pricePerLiter !== null ? (
                       <>
                         <div className="text-neutral-500 text-xs">
-                          €{(e.pricePerLEurCents / 100).toFixed(2)} / L
+                          €{pricePerLiter.toFixed(2)} / L
                         </div>
                         <div className="text-yellow-400 text-sm font-semibold tabular-nums">
-                          €{costEuros.toFixed(2)}
+                          €{costEuros!.toFixed(2)}
                         </div>
                       </>
                     ) : (
