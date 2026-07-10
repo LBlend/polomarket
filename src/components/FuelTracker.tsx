@@ -36,7 +36,19 @@ export default function FuelTracker() {
             Fuel tracker
           </h2>
 
-          <div className="grid gap-3 sm:grid-cols-3 mb-6 text-sm text-neutral-400">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-6 text-sm text-neutral-400">
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Total fueled</div>
+              <div className="mt-1 text-white font-semibold tabular-nums text-lg">
+                {totalLiters.toFixed(1)} L
+              </div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Total cost</div>
+              <div className="mt-1 text-white font-semibold tabular-nums text-lg">
+                €{totalCostEuros.toFixed(2)}
+              </div>
+            </div>
             <div>
               <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Fuel stops</div>
               <div className="mt-1 text-white font-semibold tabular-nums">{totalStops}</div>
@@ -47,13 +59,13 @@ export default function FuelTracker() {
                 {averageLiters.toFixed(1)} L
               </div>
             </div>
+          </div>
+
+          <div className="flex gap-4 mb-6 text-sm text-neutral-400">
             <div>
               <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Average price</div>
               <div className="mt-1 text-white font-semibold tabular-nums">
                 €{averagePrice.toFixed(2)} / L
-              </div>
-              <div className="text-neutral-500 text-xs mt-1">
-                Total fueled: {totalLiters.toFixed(1)} L
               </div>
             </div>
           </div>
