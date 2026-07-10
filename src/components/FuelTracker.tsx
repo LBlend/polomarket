@@ -75,32 +75,46 @@ export default function FuelTracker() {
               <div className="text-sm text-neutral-500 py-4">No entries yet</div>
             )}
 
-            {sorted.map((e, i) => (
-              <div key={i} className="py-4 flex items-start justify-between gap-4">
-                <div>
-                  <a
-                    href={googleMapsLink(e.coords)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white font-medium underline decoration-white/30 hover:text-neutral-200"
-                  >
-                    {e.place ?? `${e.coords.lat.toFixed(4)}, ${e.coords.lng.toFixed(4)}`}
-                  </a>
-                  <div className="text-neutral-500 text-xs">
-                    {new Date(e.date).toLocaleString()}
+            {sorted.map((e, i) => {
+              const liters = Number(e.litersCl) / 100;
+              const costEuros = typeof e.pricePerLEurCents === "number"
+                ? (e.pricePerLEurCents * (Number(e.litersCl) || 0)) / 100 / 100
+                : null;
+
+              return (
+                <div key={i} className="py-4 flex items-start justify-between gap-4">
+                  <div>
+                    <a
+                      href={googleMapsLink(e.coords)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white font-medium underline decoration-white/30 hover:text-neutral-200"
+                    >
+                      {e.place ?? `${e.coords.lat.toFixed(4)}, ${e.coords.lng.toFixed(4)}`}
+                    </a>
+                    <div className="text-neutral-500 text-xs">
+                      {new Date(e.date).toLocaleString()}
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <div className="font-semibold text-white tabular-nums">{liters.toFixed(1)} L</div>
+                    {costEuros !== null ? (
+                      <>
+                        <div className="text-neutral-500 text-xs">
+                          €{(e.pricePerLEurCents / 100).toFixed(2)} / L
+                        </div>
+                        <div className="text-yellow-400 text-sm font-semibold tabular-nums">
+                          €{costEuros.toFixed(2)}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-neutral-500 text-xs">No price data</div>
+                    )}
                   </div>
                 </div>
-
-                <div className="text-right">
-                  <div className="font-semibold text-white tabular-nums">{(Number(e.litersCl) / 100).toFixed(1)} L</div>
-                  {typeof e.pricePerLEurCents === "number" && (
-                    <div className="text-neutral-500 text-xs">
-                      €{(e.pricePerLEurCents / 100).toFixed(2)} / L
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
