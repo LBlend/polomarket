@@ -2,21 +2,31 @@ import fuelEntries from "@/data/fuel-entries.json";
 
 type FuelEntry = {
   date: string;
-  liters: number;
+  litersCl: number;
   coords: { lat: number; lng: number };
-  pricePerL?: number;
-  notes?: string;
+  pricePerLEurCents?: number;
+  place?: string;
 };
 
 export default function FuelTracker() {
   const entries = (fuelEntries as FuelEntry[] | undefined) ?? [];
 
-  // sort newest first
   const sorted = entries
     .slice()
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const totalLiters = sorted.reduce((acc, e) => acc + (Number(e.liters) || 0), 0);
+  const totalStops = sorted.length;
+  const totalLitersCl = sorted.reduce((acc, e) => acc + (Number(e.litersCl) || 0), 0);
+  const totalLiters = totalLitersCl / 100;
+  const totalCostEuros = sorted.reduce((acc, e) => {
+    if (typeof e.pricePerLEurCents !== "number") {
+      return acc;
+    }
+
+    return acc + (e.pricePerLEurCents * (Number(e.litersCl) || 0)) / 100 / 100;
+  }, 0);
+  const averageLiters = totalStops > 0 ? totalLiters / totalStops : 0;
+  const averagePrice = totalLiters > 0 ? totalCostEuros / totalLiters : 0;
 
   return (
     <section id="fuel" className="py-12">
@@ -25,12 +35,28 @@ export default function FuelTracker() {
           <h2 className="text-2xl font-display tracking-wider text-white mb-3">
             Fuel tracker
           </h2>
-          <p className="text-neutral-400 mb-6">
-            Total fuel logged:{" "}
-            <span className="font-semibold text-white tabular-nums">
-              {totalLiters.toFixed(1)} L
-            </span>
-          </p>
+
+          <div className="grid gap-3 sm:grid-cols-3 mb-6 text-sm text-neutral-400">
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Fuel stops</div>
+              <div className="mt-1 text-white font-semibold tabular-nums">{totalStops}</div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Average fill</div>
+              <div className="mt-1 text-white font-semibold tabular-nums">
+                {averageLiters.toFixed(1)} L
+              </div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Average price</div>
+              <div className="mt-1 text-white font-semibold tabular-nums">
+                €{averagePrice.toFixed(2)} / L
+              </div>
+              <div className="text-neutral-500 text-xs mt-1">
+                Total fueled: {totalLiters.toFixed(1)} L
+              </div>
+            </div>
+          </div>
 
           <div className="divide-y divide-rally-border">
             {sorted.length === 0 && (
@@ -40,17 +66,25 @@ export default function FuelTracker() {
             {sorted.map((e, i) => (
               <div key={i} className="py-4 flex items-start justify-between gap-4">
                 <div>
-                  <div className="text-white font-medium">{formatLocation(e.coords)}</div>
+                  <a
+                    href={googleMapsLink(e.coords)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white font-medium underline decoration-white/30 hover:text-neutral-200"
+                  >
+                    {e.place ?? `${e.coords.lat.toFixed(4)}, ${e.coords.lng.toFixed(4)}`}
+                  </a>
                   <div className="text-neutral-500 text-xs">
                     {new Date(e.date).toLocaleString()}
                   </div>
-                  {e.notes && <div className="text-neutral-400 text-sm mt-1">{e.notes}</div>}
                 </div>
 
                 <div className="text-right">
-                  <div className="font-semibold text-white tabular-nums">{Number(e.liters).toFixed(1)} L</div>
-                  {typeof e.pricePerL === "number" && (
-                    <div className="text-neutral-500 text-xs">kr {e.pricePerL.toFixed(2)} / L</div>
+                  <div className="font-semibold text-white tabular-nums">{(Number(e.litersCl) / 100).toFixed(1)} L</div>
+                  {typeof e.pricePerLEurCents === "number" && (
+                    <div className="text-neutral-500 text-xs">
+                      €{(e.pricePerLEurCents / 100).toFixed(2)} / L
+                    </div>
                   )}
                 </div>
               </div>
@@ -62,6 +96,6 @@ export default function FuelTracker() {
   );
 }
 
-function formatLocation(coords: { lat: number; lng: number }) {
-  return `${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}`;
+function googleMapsLink(coords: { lat: number; lng: number }) {
+  return `https://www.google.com/maps/search/?api=1&query=${coords.lat},${coords.lng}`;
 }
