@@ -54,5 +54,12 @@
     "coords": { "lat": 48.3596, "lng": 14.4823 },
     "pricePerLEurCents": 177.4,
     "place": "Unterweitersdorf, Austria"
+  },
+  {
+    "date": "2026-07-12T11:03:00+02:00",
+    "litersCl": 2114,
+    "coords": { "lat": 50.0851, "lng": 14.1259 },
+    "pricePerLEurCents": 160,
+    "place": "Unhošť, Czech Republic"
   }
 ]
