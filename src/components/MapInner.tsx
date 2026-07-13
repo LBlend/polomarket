@@ -211,7 +211,7 @@ export default function MapInner({
           <span className="text-neutral-400">Driven</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-green-500 block" />
+          <span className="w-3 h-3 rounded-full bg-[#1e8a6e] block" />
           <span className="text-neutral-400">Current</span>
         </div>
         <div className="flex items-center gap-2">
