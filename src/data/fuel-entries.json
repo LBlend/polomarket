@@ -68,5 +68,12 @@
     "coords": { "lat": 48.3475, "lng": 16.3198 },
     "pricePerLEurCents": 204.9,
     "place": "Korneuburg, Austria"
+  },
+  {
+    "date": "2026-07-13T13:27:00+02:00",
+    "litersCl": 2600,
+    "coords": { "lat": 46.6792, "lng": 14.5973 },
+    "pricePerLEurCents": 204.9,
+    "place": "Völkermarkt, Austria"
   }
 ]
