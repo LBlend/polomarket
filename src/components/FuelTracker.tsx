@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import fuelEntries from "@/data/fuel-entries.json";
 
 type FuelEntry = {
@@ -9,6 +12,7 @@ type FuelEntry = {
 };
 
 export default function FuelTracker() {
+  const [timeMode, setTimeMode] = useState<"local" | "place">("local");
   const entries = (fuelEntries as FuelEntry[] | undefined) ?? [];
 
   const sorted = entries
@@ -61,12 +65,37 @@ export default function FuelTracker() {
             </div>
           </div>
 
-          <div className="flex gap-4 mb-6 text-sm text-neutral-400">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6 text-sm text-neutral-400">
             <div>
               <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Average price</div>
               <div className="mt-1 text-white font-semibold tabular-nums">
                 €{averagePrice.toFixed(2)} / L
               </div>
+            </div>
+
+            <div className="inline-flex rounded-full border border-rally-border bg-neutral-950/70 p-1">
+              <button
+                type="button"
+                onClick={() => setTimeMode("local")}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  timeMode === "local"
+                    ? "bg-gold-600 text-black"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                Local time
+              </button>
+              <button
+                type="button"
+                onClick={() => setTimeMode("place")}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  timeMode === "place"
+                    ? "bg-gold-600 text-black"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                Place time
+              </button>
             </div>
           </div>
 
@@ -96,13 +125,7 @@ export default function FuelTracker() {
                       {e.place ?? `${e.coords.lat.toFixed(4)}, ${e.coords.lng.toFixed(4)}`}
                     </a>
                     <div className="text-neutral-500 text-xs">
-                      {new Date(e.date).toLocaleString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      {formatFuelTimestamp(e.date, e.place, timeMode)}
                     </div>
                   </div>
 
@@ -133,4 +156,55 @@ export default function FuelTracker() {
 
 function googleMapsLink(coords: { lat: number; lng: number }) {
   return `https://www.google.com/maps/search/?api=1&query=${coords.lat},${coords.lng}`;
+}
+
+function formatFuelTimestamp(dateString: string, place: string | undefined, mode: "local" | "place") {
+  const date = new Date(dateString);
+  const baseOptions: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
+  if (mode === "local") {
+    return date.toLocaleString("en-GB", baseOptions);
+  }
+
+  const timeZone = getTimeZoneForPlace(place);
+  return date.toLocaleString("en-GB", {
+    ...baseOptions,
+    ...(timeZone ? { timeZone } : {}),
+  });
+}
+
+function getTimeZoneForPlace(place: string | undefined) {
+  if (!place) {
+    return undefined;
+  }
+
+  const normalized = place.toLowerCase();
+
+  if (normalized.includes("sweden") || normalized.includes("håby") || normalized.includes("malmö")) {
+    return "Europe/Stockholm";
+  }
+
+  if (normalized.includes("germany") || normalized.includes("alt duvenstedt") || normalized.includes("stadtallendorf") || normalized.includes("hinterzarten")) {
+    return "Europe/Berlin";
+  }
+
+  if (normalized.includes("italy") || normalized.includes("vicenza")) {
+    return "Europe/Rome";
+  }
+
+  if (normalized.includes("austria") || normalized.includes("gailitz") || normalized.includes("unterweitersdorf")) {
+    return "Europe/Vienna";
+  }
+
+  if (normalized.includes("czech") || normalized.includes("unhošť")) {
+    return "Europe/Prague";
+  }
+
+  return undefined;
 }
