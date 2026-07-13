@@ -96,7 +96,13 @@ export default function FuelTracker() {
                       {e.place ?? `${e.coords.lat.toFixed(4)}, ${e.coords.lng.toFixed(4)}`}
                     </a>
                     <div className="text-neutral-500 text-xs">
-                      {new Date(e.date).toLocaleString()}
+                      {new Date(e.date).toLocaleString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </div>
                   </div>
 
