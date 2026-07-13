@@ -75,5 +75,12 @@
     "coords": { "lat": 46.6792, "lng": 14.5973 },
     "pricePerLEurCents": 204.9,
     "place": "Völkermarkt, Austria"
+  },
+  {
+    "date": "2026-07-13T20:24:00+02:00",
+    "litersCl": 2101,
+    "coords": { "lat": 45.3942, "lng": 14.8001 },
+    "pricePerLEurCents": 154,
+    "place": "Delnice, Croatia"
   }
 ]
