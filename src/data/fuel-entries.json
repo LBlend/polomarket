@@ -61,5 +61,12 @@
     "coords": { "lat": 50.0851, "lng": 14.1259 },
     "pricePerLEurCents": 160,
     "place": "Unhošť, Czech Republic"
+  },
+  {
+    "date": "2026-07-12T18:11:00+02:00",
+    "litersCl": 2518,
+    "coords": { "lat": 48.3475, "lng": 16.3198 },
+    "pricePerLEurCents": 204.9,
+    "place": "Korneuburg, Austria"
   }
 ]
