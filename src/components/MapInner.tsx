@@ -142,7 +142,14 @@ export default function MapInner({
               <div className="text-sm font-sans space-y-1 min-w-[160px]">
                 <p className="font-bold text-green-500">Tjukk Tuk</p>
                 <p className="text-neutral-400 text-xs">
-                  {new Date(latest.timestamp).toLocaleString("en-GB")}
+                  {new Date(latest.timestamp).toLocaleString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                  })}
                 </p>
                 {latest.speed != null && (
                   <p className="flex items-center gap-1 text-neutral-300">

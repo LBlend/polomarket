@@ -87,12 +87,13 @@ export default function LiveMap() {
               <div className="flex items-center gap-2 text-xs text-neutral-500">
                 <Zap size={12} className="text-gold-600" />
                 <span>
-                  Last ping:{" "}
+                  Last ping: {" "}
                   {new Date(latest.timestamp).toLocaleString("en-GB", {
                     day: "numeric",
                     month: "short",
                     hour: "2-digit",
                     minute: "2-digit",
+                    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                   })}
                 </span>
               </div>
