@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { MapPin, RefreshCw, Clock, Zap } from "lucide-react";
+import { MapPin, RefreshCw, Clock, Zap, ExternalLink } from "lucide-react";
 import type { LocationPoint, WaypointData } from "@/types";
 
 const MapInner = dynamic(() => import("./MapInner"), {
@@ -82,7 +82,7 @@ export default function LiveMap() {
             </h2>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3">
             {latest && (
               <div className="flex items-center gap-2 text-xs text-neutral-500">
                 <Zap size={12} className="text-gold-600" />
@@ -97,6 +97,15 @@ export default function LiveMap() {
                 </span>
               </div>
             )}
+            <a
+              href="https://www.followmychallenge.com/live/the-adventurists/mongol-rally-2026/?ref=adv_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold-600/40 bg-gold-600/10 px-3 py-2 text-xs font-medium text-gold-400 transition-colors hover:bg-gold-600/20"
+            >
+              <ExternalLink size={12} />
+              See live map of all teams here
+            </a>
             <button
               onClick={fetchData}
               className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-gold-400 transition-colors"
