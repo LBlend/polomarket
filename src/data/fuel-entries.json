@@ -82,5 +82,12 @@
     "coords": { "lat": 45.3942, "lng": 14.8001 },
     "pricePerLEurCents": 154,
     "place": "Delnice, Croatia"
+  },
+  {
+    "date": "2026-07-13T23:09:00+02:00",
+    "litersCl": 1932,
+    "coords": { "lat": 44.0628, "lng": 15.5285 },
+    "pricePerLEurCents": 163,
+    "place": "Polača, Croatia"
   }
 ]
