@@ -89,5 +89,33 @@
     "coords": { "lat": 44.0628, "lng": 15.5285 },
     "pricePerLEurCents": 163,
     "place": "Polača, Croatia"
+  },
+  {
+    "date": "2026-07-15T13:13:00+02:00",
+    "litersCl": 1825,
+    "coords": { "lat": 3.1054, "lng": 17.3481 },
+    "pricePerLEurCents": 154,
+    "place": "Gradac, Croatia"
+  },
+  {
+    "date": "2026-07-15T19:47:00+02:00",
+    "litersCl": 1622,
+    "coords": { "lat": 42.5107, "lng": 18.6962 },
+    "pricePerLEurCents": 162,
+    "place": "Risan, Montenegro"
+  },
+  {
+    "date": "2026-07-16T11:05:00+02:00",
+    "litersCl": 990,
+    "coords": { "lat": 42.4169, "lng": 19.2080 },
+    "pricePerLEurCents": 164,
+    "place": "Podgorica, Montenegro"
+  },
+  {
+    "date": "2026-07-17T12:12:00+02:00",
+    "litersCl": 2148,
+    "coords": { "lat": 41.1831, "lng": 20.6674 },
+    "pricePerLEurCents": 141,
+    "place": "Struga, North Macedonia"
   }
 ]
