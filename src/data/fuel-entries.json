@@ -117,5 +117,26 @@
     "coords": { "lat": 41.1831, "lng": 20.6674 },
     "pricePerLEurCents": 141,
     "place": "Struga, North Macedonia"
+  },
+  {
+    "date": "2026-07-17T23:11:00+03:00",
+    "litersCl": 3064,
+    "coords": { "lat": 40.7836, "lng": 23.8331 },
+    "pricePerLEurCents": 199.9,
+    "place": "Serres, Greece"
+  },
+  {
+    "date": "2026-07-18T07:39:00+03:00",
+    "litersCl": 2568,
+    "coords": { "lat": 40.8654, "lng": 26.7986 },
+    "pricePerLEurCents": 123,
+    "place": "Tekirdağ, Türkiye"
+  },
+  {
+    "date": "2026-07-19T11:55:00+03:00",
+    "litersCl": 3089,
+    "coords": { "lat": 40.7727, "lng": 30.3649 },
+    "pricePerLEurCents": 123,
+    "place": "Sakarya, Türkiye"
   }
 ]
