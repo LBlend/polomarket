@@ -138,5 +138,12 @@
     "coords": { "lat": 40.7727, "lng": 30.3649 },
     "pricePerLEurCents": 123,
     "place": "Sakarya, Türkiye"
+  },
+  {
+    "date": "2026-07-19T17:02:00+03:00",
+    "litersCl": 2745,
+    "coords": { "lat": 40.9404, "lng": 33.8707 },
+    "pricePerLEurCents": 125,
+    "place": "Kastamonu, Türkiye"
   }
 ]
