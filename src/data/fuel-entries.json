@@ -145,5 +145,26 @@
     "coords": { "lat": 40.9404, "lng": 33.8707 },
     "pricePerLEurCents": 125,
     "place": "Kastamonu, Türkiye"
+  },
+  {
+    "date": "2026-07-20T12:23:00+03:00",
+    "litersCl": 2767,
+    "coords": { "lat": 41.0218, "lng": 37.5296 },
+    "pricePerLEurCents": 125,
+    "place": "Fatsa, Türkiye"
+  },
+  {
+    "date": "2026-07-21T18:03:00+04:00",
+    "litersCl": 3374,
+    "coords": { "lat": 41.5922, "lng": 41.6445 },
+    "pricePerLEurCents": 124,
+    "place": "Khelvachauri, Georgia"
+  },
+  {
+    "date": "2026-07-22T14:49:00+04:00",
+    "litersCl": 3243,
+    "coords": { "lat": 42.0535, "lng": 43.9089 },
+    "pricePerLEurCents": 127,
+    "place": "Kareli, Georgia"
   }
 ]
