@@ -166,5 +166,12 @@
     "coords": { "lat": 42.0535, "lng": 43.9089 },
     "pricePerLEurCents": 127,
     "place": "Kareli, Georgia"
+  },
+  {
+    "date": "2026-07-31T21:27:00+04:00",
+    "litersCl": 2313,
+    "coords": { "lat": 39.9611, "lng": 49.4082 },
+    "pricePerLEurCents": 82,
+    "place": "Qobustan, Azerbaijan"
   }
 ]
