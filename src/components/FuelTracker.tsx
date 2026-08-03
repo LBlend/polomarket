@@ -32,6 +32,12 @@ export default function FuelTracker() {
   const averageLiters = totalStops > 0 ? totalLiters / totalStops : 0;
   const averagePrice = totalLiters > 0 ? totalCostEuros / totalLiters : 0;
 
+  const pricesPerLiter = sorted
+    .filter((e) => typeof e.pricePerLEurCents === "number")
+    .map((e) => (e.pricePerLEurCents as number) / 100);
+  const lowestPrice = pricesPerLiter.length > 0 ? Math.min(...pricesPerLiter) : 0;
+  const highestPrice = pricesPerLiter.length > 0 ? Math.max(...pricesPerLiter) : 0;
+
   return (
     <section id="fuel" className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,6 +76,18 @@ export default function FuelTracker() {
               <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Average price</div>
               <div className="mt-1 text-white font-semibold tabular-nums">
                 €{averagePrice.toFixed(2)} / L
+              </div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Lowest price</div>
+              <div className="mt-1 text-white font-semibold tabular-nums">
+                €{lowestPrice.toFixed(2)} / L
+              </div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-neutral-500">Highest price</div>
+              <div className="mt-1 text-white font-semibold tabular-nums">
+                €{highestPrice.toFixed(2)} / L
               </div>
             </div>
 
