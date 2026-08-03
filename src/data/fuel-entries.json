@@ -173,5 +173,12 @@
     "coords": { "lat": 39.9611, "lng": 49.4082 },
     "pricePerLEurCents": 82,
     "place": "Qobustan, Azerbaijan"
+  },
+  {
+    "date": "2026-08-03T19:57:00+05:00",
+    "litersCl": 5052,
+    "coords": { "lat": 43.3521, "lng": 52.8152 },
+    "pricePerLEurCents": 55,
+    "place": "Zhanaozen, Kazakhstan"
   }
 ]
