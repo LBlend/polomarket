@@ -19,6 +19,28 @@ const MapInner = dynamic(() => import("./MapInner"), {
 
 const REFRESH_INTERVAL = 60_000;
 
+function getRoadTripCount(locations: LocationPoint[]) {
+  if (locations.length === 0) return 0;
+
+  const sortedLocations = [...locations].sort(
+    (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+  );
+
+  let count = 1;
+  const gapThresholdMs = 6 * 60 * 60 * 1000;
+
+  for (let index = 1; index < sortedLocations.length; index += 1) {
+    const prevTime = new Date(sortedLocations[index - 1].timestamp).getTime();
+    const currentTime = new Date(sortedLocations[index].timestamp).getTime();
+
+    if (currentTime - prevTime > gapThresholdMs) {
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
 export default function LiveMap() {
   const [locations, setLocations] = useState<LocationPoint[]>([]);
   const [waypoints, setWaypoints] = useState<WaypointData[]>([]);
@@ -67,6 +89,7 @@ export default function LiveMap() {
   };
 
   const latest = locations[locations.length - 1];
+  const roadTripCount = getRoadTripCount(locations);
 
   return (
     <section id="map" className="py-20 bg-rally-dark">
@@ -133,7 +156,7 @@ export default function LiveMap() {
             {
               icon: <Zap size={16} className="text-amber-400" />,
               label: "Status",
-              value: locations.length > 0 ? "EN ROUTE" : "Waiting",
+              value: locations.length > 0 ? `EN ROUTE • ${roadTripCount}x` : "Waiting",
             },
           ].map((stat) => (
             <div
