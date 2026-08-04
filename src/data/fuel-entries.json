@@ -180,5 +180,12 @@
     "coords": { "lat": 43.3521, "lng": 52.8152 },
     "pricePerLEurCents": 55,
     "place": "Zhanaozen, Kazakhstan (car + jerry can fill)"
+  },
+  {
+    "date": "2026-08-04T20:05:00+05:00",
+    "litersCl": 2503,
+    "coords": { "lat": 43.3521, "lng": 52.8152 },
+    "pricePerLEurCents": 55,
+    "place": "Zhanaozen, Kazakhstan (yes, same station)"
   }
 ]
