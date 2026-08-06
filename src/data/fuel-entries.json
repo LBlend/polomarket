@@ -201,5 +201,12 @@
     "coords": { "lat": 45.3061, "lng": 55.1556 },
     "pricePerLEurCents": 55,
     "place": "Beyneu, Kazakhstan (car+ jerry can)"
+  },
+  {
+    "date": "2026-08-06T17:47:00+05:00",
+    "litersCl": 3464,
+    "coords": { "lat": 46.2153, "lng": 58.8287 },
+    "pricePerLEurCents": 46,
+    "place": "Bozoy, Kazakhstan"
   }
 ]
