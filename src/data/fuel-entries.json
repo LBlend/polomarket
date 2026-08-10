@@ -212,8 +212,15 @@
   {
     "date": "2026-08-10T14:16:00+05:00",
     "litersCl": 2802,
-    "coords": { "lat": 44.8198, "lng": 65.5724 },
+    "coords": { "lat": 43.2705, "lng": 65.5724 },
     "pricePerLEurCents": 56,
     "place": "Kyzylorda, Kazakhstan"
+  },
+  {
+    "date": "2026-08-10T16:12:00+05:00",
+    "litersCl": 2899,
+    "coords": { "lat": 44.8198, "lng": 68.3483 },
+    "pricePerLEurCents": 56,
+    "place": "Turkistan, Kazakhstan"
   }
 ]
