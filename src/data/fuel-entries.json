@@ -203,10 +203,17 @@
     "place": "Bozoy, Kazakhstan"
   },
   {
-    "date": "2026-08-08T14:16:00+05:00",
+    "date": "2026-08-08T12:10:00+05:00",
     "litersCl": 2956,
     "coords": { "lat": 46.2338, "lng": 62.0061 },
     "pricePerLEurCents": 55,
     "place": "Kamyshlybash, Kazakhstan"
+  },
+  {
+    "date": "2026-08-10T14:16:00+05:00",
+    "litersCl": 2802,
+    "coords": { "lat": 44.8198, "lng": 65.5724 },
+    "pricePerLEurCents": 56,
+    "place": "Kyzylorda, Kazakhstan"
   }
 ]
