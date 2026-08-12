@@ -167,7 +167,7 @@ export default function LiveMap() {
             {
               icon: <Zap size={16} className="text-amber-400" />,
               label: "Status",
-              value: locations.length > 0 ? `EN ROUTE • ${roadTripCount}` : "Waiting",
+              value: locations.length > 0 ? "EN ROUTE" : "Waiting",
             },
           ].map((stat) => (
             <div
