@@ -229,5 +229,12 @@
     "coords": { "lat": 41.1659, "lng": 69.3302 },
     "pricePerLEurCents": 142,
     "place": "Tashkent, Uzbekistan"
+  },
+  {
+    "date": "2026-08-12T11:22:00+05:00",
+    "litersCl": 2792,
+    "coords": { "lat": 39.4950, "lng": 67.6366 },
+    "pricePerLEurCents": 127,
+    "place": "Panjakent, Tajikistan"
   }
 ]
