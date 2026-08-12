@@ -20,6 +20,9 @@ const MapInner = dynamic(() => import("./MapInner"), {
 const REFRESH_INTERVAL = 60_000;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
+function getRoadTripCount(locations: LocationPoint[]) {
+  if (locations.length === 0) return 0;
+
   const sortedLocations = [...locations].sort(
     (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
   );
@@ -87,6 +90,8 @@ export default function LiveMap() {
   };
 
   const latest = locations[locations.length - 1];
+  const roadTripCount = getRoadTripCount(locations);
+
   // Days tracked: compute from earliest ping (inclusive - first day counts as 1)
   const daysTracked = locations.length > 0
     ? Math.floor((Date.now() - Math.min(...locations.map((l) => new Date(l.timestamp).getTime()))) / MS_PER_DAY) + 1
@@ -162,7 +167,7 @@ export default function LiveMap() {
             {
               icon: <Zap size={16} className="text-amber-400" />,
               label: "Status",
-              value: locations.length > 0 ? `EN ROUTE` : "Waiting",
+              value: locations.length > 0 ? `EN ROUTE • ${roadTripCount}` : "Waiting",
             },
           ].map((stat) => (
             <div
