@@ -204,7 +204,6 @@ function getTimeZoneForPlace(place: string | undefined) {
 
   const normalized = place.toLowerCase();
 
-  // Northern / Central Europe
   if (normalized.includes("sweden") || normalized.includes("håby") || normalized.includes("malmö")) {
     return "Europe/Stockholm";
   }
@@ -217,54 +216,12 @@ function getTimeZoneForPlace(place: string | undefined) {
     return "Europe/Rome";
   }
 
-  if (normalized.includes("austria") || normalized.includes("gailitz") || normalized.includes("unterweitersdorf") || normalized.includes("korneuburg") || normalized.includes("völkermarkt") || normalized.includes("volkermarkt")) {
+  if (normalized.includes("austria") || normalized.includes("gailitz") || normalized.includes("unterweitersdorf")) {
     return "Europe/Vienna";
   }
 
-  if (normalized.includes("czech") || normalized.includes("unhošť") || normalized.includes("unhost")) {
+  if (normalized.includes("czech") || normalized.includes("unhošť")) {
     return "Europe/Prague";
-  }
-
-  if (normalized.includes("croatia") || normalized.includes("delnice") || normalized.includes("polača") || normalized.includes("polaca") || normalized.includes("gradac")) {
-    return "Europe/Zagreb";
-  }
-
-  if (normalized.includes("montenegro") || normalized.includes("risan") || normalized.includes("podgorica")) {
-    return "Europe/Podgorica";
-  }
-
-  if (normalized.includes("north macedonia") || normalized.includes("macedonia") || normalized.includes("struga")) {
-    return "Europe/Skopje";
-  }
-
-  if (normalized.includes("greece") || normalized.includes("serres")) {
-    return "Europe/Athens";
-  }
-
-  // Türkiye may be written as 'turkiye', 'türkiye' or 'turkey'
-  if (normalized.includes("türkiye") || normalized.includes("turkiye") || normalized.includes("turkey")) {
-    return "Europe/Istanbul";
-  }
-
-  if (normalized.includes("georgia") || normalized.includes("khelvachauri") || normalized.includes("kareli")) {
-    return "Asia/Tbilisi";
-  }
-
-  if (normalized.includes("azerbaijan") || normalized.includes("qobustan") || normalized.includes("baku")) {
-    return "Asia/Baku";
-  }
-
-  // Central Asia
-  if (normalized.includes("kazakhstan") || normalized.includes("zhanaozen") || normalized.includes("beyneu") || normalized.includes("bozoy") || normalized.includes("kamyshlybash") || normalized.includes("kyzylorda") || normalized.includes("turkistan") || normalized.includes("kamyshlybash")) {
-    return "Asia/Almaty"; // most of the data here uses +05:00/+06:00 regions; Almaty is a reasonable default
-  }
-
-  if (normalized.includes("uzbekistan") || normalized.includes("tashkent")) {
-    return "Asia/Tashkent";
-  }
-
-  if (normalized.includes("tajikistan") || normalized.includes("panjakent") || normalized.includes("panjakent")) {
-    return "Asia/Dushanbe";
   }
 
   return undefined;
