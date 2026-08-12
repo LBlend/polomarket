@@ -18,6 +18,7 @@ const MapInner = dynamic(() => import("./MapInner"), {
 });
 
 const REFRESH_INTERVAL = 60_000;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 function getRoadTripCount(locations: LocationPoint[]) {
   if (locations.length === 0) return 0;
@@ -91,6 +92,11 @@ export default function LiveMap() {
   const latest = locations[locations.length - 1];
   const roadTripCount = getRoadTripCount(locations);
 
+  // Days tracked: compute from earliest ping (inclusive - first day counts as 1)
+  const daysTracked = locations.length > 0
+    ? Math.floor((Date.now() - Math.min(...locations.map((l) => new Date(l.timestamp).getTime()))) / MS_PER_DAY) + 1
+    : 0;
+
   return (
     <section id="map" className="py-20 bg-rally-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,7 +147,7 @@ export default function LiveMap() {
         </div>
 
         {/* Stats bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {[
             {
               icon: <MapPin size={16} className="text-gold-500" />,
@@ -150,13 +156,18 @@ export default function LiveMap() {
             },
             {
               icon: <Clock size={16} className="text-indigo-400" />,
+              label: "Days tracked",
+              value: daysTracked > 0 ? daysTracked.toLocaleString("en") : "0",
+            },
+            {
+              icon: <MapPin size={16} className="text-indigo-400" />,
               label: "Planned stops",
               value: waypoints.filter((w) => !w.visited).length,
             },
             {
               icon: <Zap size={16} className="text-amber-400" />,
               label: "Status",
-              value: locations.length > 0 ? `EN ROUTE • ${roadTripCount}x` : "Waiting",
+              value: locations.length > 0 ? `EN ROUTE • ${roadTripCount}` : "Waiting",
             },
           ].map((stat) => (
             <div
