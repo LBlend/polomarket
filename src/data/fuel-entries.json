@@ -236,5 +236,19 @@
     "coords": { "lat": 39.4950, "lng": 67.6366 },
     "pricePerLEurCents": 127,
     "place": "Panjakent, Tajikistan"
+  },
+  {
+    "date": "2026-08-13T10:54:00+05:00",
+    "litersCl": 5315,
+    "coords": { "lat": 38.5549, "lng": 68.9326 },
+    "pricePerLEurCents": 129,
+    "place": "Shhriston, Tajikistan (car + jerry can)"
+  },
+  {
+    "date": "2026-08-14T10:28:00+05:00",
+    "litersCl": 2611,
+    "coords": { "lat": 38.3861, "lng": 70.6833 },
+    "pricePerLEurCents": 140,
+    "place": "Qalaikhumb, Tajikistan"
   }
 ]
