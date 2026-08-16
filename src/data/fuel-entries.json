@@ -250,5 +250,12 @@
     "coords": { "lat": 38.3861, "lng": 70.6833 },
     "pricePerLEurCents": 140,
     "place": "Qalaikhumb, Tajikistan"
+  },
+  {
+    "date": "2026-08-16T13:30:00+05:00",
+    "litersCl": 2894,
+    "coords": { "lat": 37.4907, "lng": 71.5744 },
+    "pricePerLEurCents": 140,
+    "place": "Khorug, Tajikistan"
   }
 ]
