@@ -257,5 +257,12 @@
     "coords": { "lat": 37.4907, "lng": 71.5744 },
     "pricePerLEurCents": 140,
     "place": "Khorug, Tajikistan"
+  },
+  {
+    "date": "2026-08-20T07:05:00+05:00",
+    "litersCl": 3648,
+    "coords": { "lat": 38.1755, "lng": 73.9761  },
+    "pricePerLEurCents": 143,
+    "place": "Murghob, Tajikistan"
   }
 ]
