@@ -264,5 +264,12 @@
     "coords": { "lat": 38.1755, "lng": 73.9761  },
     "pricePerLEurCents": 143,
     "place": "Murghob, Tajikistan"
+  },
+  {
+    "date": "2026-08-20T21:04:00+05:00",
+    "litersCl": 1883,
+    "coords": { "lat": 40.1766 "lng": 73.4948 },
+    "pricePerLEurCents": 88,
+    "place": "Gulcha, Kyrgyzstan"
   }
 ]
