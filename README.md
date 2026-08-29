@@ -1,5 +1,9 @@
 # Team Polomarket — Mongol Rally 2026
 
+⚠️ **This is AI slop** ⚠️
+
+If you couldn't tell by the look of the website already, this is AI slop. I just needed a website to be made for our needs. The joy of programming is dead to me anyway
+
 ## Getting Started
 
 ### 1. Install dependencies
