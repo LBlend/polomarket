@@ -91,6 +91,7 @@ export default function LiveMap() {
 
   const latest = locations[locations.length - 1];
   const roadTripCount = getRoadTripCount(locations);
+  const statusText = "FINISHED";
 
   // Days tracked: compute from earliest ping (inclusive - first day counts as 1)
   const daysTracked = locations.length > 0
@@ -167,7 +168,7 @@ export default function LiveMap() {
             {
               icon: <Zap size={16} className="text-amber-400" />,
               label: "Status",
-              value: locations.length > 0 ? "EN ROUTE" : "Waiting",
+              value: statusText,
             },
           ].map((stat) => (
             <div
